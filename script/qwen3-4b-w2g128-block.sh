@@ -1,0 +1,13 @@
+CUDA_VISIBLE_DEVICES=5 python block_main.py \
+    --model /share/Qwen3-4B \
+    --wbits 2 \
+    --group_size 128 \
+    --calib_dataset sweep_0.8 \
+    --train_size 4096 \
+    --val_size 64 \
+    --epochs 2 \
+    --batch_size 2 \
+    --weight_lr 2e-5 \
+    --quant_lr 1e-4 \
+    --save_quant_dir /share/MY-DAPO/block_qat/qwen3-4b-w2g128 \
+    --output_dir ./log/block_qat/qwen3-4b-w2g128

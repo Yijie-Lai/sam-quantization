@@ -1,0 +1,405 @@
+[2026-04-29 03:05:12 root] (block_main.py 156): INFO Namespace(model='/share/Qwen3-4B', cache_dir='./cache', output_dir='./log/block_qat/qwen3-4b-w2g128-sam-pg', save_quant_dir='/share/MY-DAPO/block_qat/qwen3-4b-w2g128-sam-pg', real_quant=False, resume_quant=None, calib_dataset='sweep_0.8', train_size=4096, val_size=64, training_seqlen=2048, batch_size=2, epochs=10, ppl_seqlen=2048, seed=2, eval_ppl=False, eval_tasks='', eval_batch_size=16, wbits=2, group_size=128, quant_lr=0.0001, weight_lr=2e-05, min_lr_factor=20, clip_grad=0.1, wd=0, net=None, max_memory='70GiB', early_stop=0, off_load_to_disk=False, use_progressive=True, target_bits=2, r_shape_mode='group', rho=0.05, ema_momentum=0.05, use_sam=True, sam_rho=0.05)
+[2026-04-29 03:05:12 root] (block_main.py 160): INFO net is None, setting as Qwen3-4B
+[2026-04-29 03:05:14 root] (block_main.py 184): INFO === start quantization ===
+[2026-04-29 03:05:15 root] (block_main.py 192): INFO load trainloader from ./cache/dataloader_Qwen3-4B_sweep_0.8_4096_64_2048_train.cache
+[2026-04-29 03:05:15 root] (block_main.py 194): INFO load valloader from ./cache/dataloader_Qwen3-4B_sweep_0.8_4096_64_2048_val.cache
+[2026-04-29 03:05:15 root] (block_ap.py 152): INFO Starting ...
+[2026-04-29 03:05:27 root] (block_ap.py 287): INFO === Block 0 ===
+[2026-04-29 03:10:04 root] (block_ap.py 424): INFO [Block 0] Epoch 1/10 | Train Loss: 0.001028 | Grad Norm: 0.0044
+[2026-04-29 03:14:14 root] (block_ap.py 424): INFO [Block 0] Epoch 2/10 | Train Loss: 0.000734 | Grad Norm: 0.0026
+[2026-04-29 03:18:23 root] (block_ap.py 424): INFO [Block 0] Epoch 3/10 | Train Loss: 0.000668 | Grad Norm: 0.0020
+[2026-04-29 03:22:32 root] (block_ap.py 424): INFO [Block 0] Epoch 4/10 | Train Loss: 0.000644 | Grad Norm: 0.0020
+[2026-04-29 03:26:41 root] (block_ap.py 424): INFO [Block 0] Epoch 5/10 | Train Loss: 0.000609 | Grad Norm: 0.0015
+[2026-04-29 03:30:51 root] (block_ap.py 424): INFO [Block 0] Epoch 6/10 | Train Loss: 0.000597 | Grad Norm: 0.0016
+[2026-04-29 03:35:01 root] (block_ap.py 424): INFO [Block 0] Epoch 7/10 | Train Loss: 0.000574 | Grad Norm: 0.0012
+[2026-04-29 03:39:11 root] (block_ap.py 424): INFO [Block 0] Epoch 8/10 | Train Loss: 0.000562 | Grad Norm: 0.0011
+[2026-04-29 03:43:20 root] (block_ap.py 424): INFO [Block 0] Epoch 9/10 | Train Loss: 0.000556 | Grad Norm: 0.0011
+[2026-04-29 03:47:29 root] (block_ap.py 424): INFO [Block 0] Epoch 10/10 | Train Loss: 0.000568 | Grad Norm: 0.0014
+[2026-04-29 03:47:52 root] (block_ap.py 287): INFO === Block 1 ===
+[2026-04-29 03:52:23 root] (block_ap.py 424): INFO [Block 1] Epoch 1/10 | Train Loss: 0.001854 | Grad Norm: 0.0214
+[2026-04-29 03:56:32 root] (block_ap.py 424): INFO [Block 1] Epoch 2/10 | Train Loss: 0.001048 | Grad Norm: 0.0061
+[2026-04-29 04:00:40 root] (block_ap.py 424): INFO [Block 1] Epoch 3/10 | Train Loss: 0.000973 | Grad Norm: 0.0051
+[2026-04-29 04:04:50 root] (block_ap.py 424): INFO [Block 1] Epoch 4/10 | Train Loss: 0.000903 | Grad Norm: 0.0030
+[2026-04-29 04:08:59 root] (block_ap.py 424): INFO [Block 1] Epoch 5/10 | Train Loss: 0.000878 | Grad Norm: 0.0030
+[2026-04-29 04:13:07 root] (block_ap.py 424): INFO [Block 1] Epoch 6/10 | Train Loss: 0.000855 | Grad Norm: 0.0027
+[2026-04-29 04:17:16 root] (block_ap.py 424): INFO [Block 1] Epoch 7/10 | Train Loss: 0.000840 | Grad Norm: 0.0028
+[2026-04-29 04:21:24 root] (block_ap.py 424): INFO [Block 1] Epoch 8/10 | Train Loss: 0.000821 | Grad Norm: 0.0021
+[2026-04-29 04:25:33 root] (block_ap.py 424): INFO [Block 1] Epoch 9/10 | Train Loss: 0.000808 | Grad Norm: 0.0018
+[2026-04-29 04:29:42 root] (block_ap.py 424): INFO [Block 1] Epoch 10/10 | Train Loss: 0.000803 | Grad Norm: 0.0017
+[2026-04-29 04:30:05 root] (block_ap.py 287): INFO === Block 2 ===
+[2026-04-29 04:34:40 root] (block_ap.py 424): INFO [Block 2] Epoch 1/10 | Train Loss: 0.003479 | Grad Norm: 0.0347
+[2026-04-29 04:38:48 root] (block_ap.py 424): INFO [Block 2] Epoch 2/10 | Train Loss: 0.001633 | Grad Norm: 0.0115
+[2026-04-29 04:42:56 root] (block_ap.py 424): INFO [Block 2] Epoch 3/10 | Train Loss: 0.001498 | Grad Norm: 0.0088
+[2026-04-29 04:47:05 root] (block_ap.py 424): INFO [Block 2] Epoch 4/10 | Train Loss: 0.001426 | Grad Norm: 0.0069
+[2026-04-29 04:51:14 root] (block_ap.py 424): INFO [Block 2] Epoch 5/10 | Train Loss: 0.001384 | Grad Norm: 0.0055
+[2026-04-29 04:55:23 root] (block_ap.py 424): INFO [Block 2] Epoch 6/10 | Train Loss: 0.001348 | Grad Norm: 0.0054
+[2026-04-29 04:59:32 root] (block_ap.py 424): INFO [Block 2] Epoch 7/10 | Train Loss: 0.001311 | Grad Norm: 0.0040
+[2026-04-29 05:03:42 root] (block_ap.py 424): INFO [Block 2] Epoch 8/10 | Train Loss: 0.001294 | Grad Norm: 0.0039
+[2026-04-29 05:07:50 root] (block_ap.py 424): INFO [Block 2] Epoch 9/10 | Train Loss: 0.001284 | Grad Norm: 0.0038
+[2026-04-29 05:11:59 root] (block_ap.py 424): INFO [Block 2] Epoch 10/10 | Train Loss: 0.001283 | Grad Norm: 0.0035
+[2026-04-29 05:12:22 root] (block_ap.py 287): INFO === Block 3 ===
+[2026-04-29 05:16:54 root] (block_ap.py 424): INFO [Block 3] Epoch 1/10 | Train Loss: 0.003895 | Grad Norm: 0.0185
+[2026-04-29 05:21:03 root] (block_ap.py 424): INFO [Block 3] Epoch 2/10 | Train Loss: 0.002765 | Grad Norm: 0.0105
+[2026-04-29 05:25:13 root] (block_ap.py 424): INFO [Block 3] Epoch 3/10 | Train Loss: 0.002615 | Grad Norm: 0.0083
+[2026-04-29 05:29:22 root] (block_ap.py 424): INFO [Block 3] Epoch 4/10 | Train Loss: 0.002525 | Grad Norm: 0.0072
+[2026-04-29 05:33:32 root] (block_ap.py 424): INFO [Block 3] Epoch 5/10 | Train Loss: 0.002455 | Grad Norm: 0.0066
+[2026-04-29 05:37:41 root] (block_ap.py 424): INFO [Block 3] Epoch 6/10 | Train Loss: 0.002400 | Grad Norm: 0.0060
+[2026-04-29 05:41:50 root] (block_ap.py 424): INFO [Block 3] Epoch 7/10 | Train Loss: 0.002356 | Grad Norm: 0.0054
+[2026-04-29 05:45:59 root] (block_ap.py 424): INFO [Block 3] Epoch 8/10 | Train Loss: 0.002326 | Grad Norm: 0.0050
+[2026-04-29 05:50:08 root] (block_ap.py 424): INFO [Block 3] Epoch 9/10 | Train Loss: 0.002304 | Grad Norm: 0.0045
+[2026-04-29 05:54:18 root] (block_ap.py 424): INFO [Block 3] Epoch 10/10 | Train Loss: 0.002302 | Grad Norm: 0.0042
+[2026-04-29 05:54:41 root] (block_ap.py 287): INFO === Block 4 ===
+[2026-04-29 05:59:21 root] (block_ap.py 424): INFO [Block 4] Epoch 1/10 | Train Loss: 0.006226 | Grad Norm: 0.0162
+[2026-04-29 06:03:30 root] (block_ap.py 424): INFO [Block 4] Epoch 2/10 | Train Loss: 0.004931 | Grad Norm: 0.0120
+[2026-04-29 06:07:39 root] (block_ap.py 424): INFO [Block 4] Epoch 3/10 | Train Loss: 0.004709 | Grad Norm: 0.0101
+[2026-04-29 06:11:48 root] (block_ap.py 424): INFO [Block 4] Epoch 4/10 | Train Loss: 0.004584 | Grad Norm: 0.0090
+[2026-04-29 06:15:58 root] (block_ap.py 424): INFO [Block 4] Epoch 5/10 | Train Loss: 0.004502 | Grad Norm: 0.0090
+[2026-04-29 06:20:07 root] (block_ap.py 424): INFO [Block 4] Epoch 6/10 | Train Loss: 0.004428 | Grad Norm: 0.0079
+[2026-04-29 06:24:17 root] (block_ap.py 424): INFO [Block 4] Epoch 7/10 | Train Loss: 0.004366 | Grad Norm: 0.0073
+[2026-04-29 06:28:27 root] (block_ap.py 424): INFO [Block 4] Epoch 8/10 | Train Loss: 0.004336 | Grad Norm: 0.0067
+[2026-04-29 06:32:36 root] (block_ap.py 424): INFO [Block 4] Epoch 9/10 | Train Loss: 0.004327 | Grad Norm: 0.0062
+[2026-04-29 06:36:45 root] (block_ap.py 424): INFO [Block 4] Epoch 10/10 | Train Loss: 0.004354 | Grad Norm: 0.0057
+[2026-04-29 06:37:08 root] (block_ap.py 287): INFO === Block 5 ===
+[2026-04-29 06:41:41 root] (block_ap.py 424): INFO [Block 5] Epoch 1/10 | Train Loss: 0.009669 | Grad Norm: 0.0083
+[2026-04-29 06:45:50 root] (block_ap.py 424): INFO [Block 5] Epoch 2/10 | Train Loss: 0.008077 | Grad Norm: 0.0068
+[2026-04-29 06:50:00 root] (block_ap.py 424): INFO [Block 5] Epoch 3/10 | Train Loss: 0.007890 | Grad Norm: 0.0063
+[2026-04-29 06:54:10 root] (block_ap.py 424): INFO [Block 5] Epoch 4/10 | Train Loss: 0.007795 | Grad Norm: 0.0058
+[2026-04-29 06:58:20 root] (block_ap.py 424): INFO [Block 5] Epoch 5/10 | Train Loss: 0.007735 | Grad Norm: 0.0057
+[2026-04-29 07:02:29 root] (block_ap.py 424): INFO [Block 5] Epoch 6/10 | Train Loss: 0.007677 | Grad Norm: 0.0053
+[2026-04-29 07:06:43 root] (block_ap.py 424): INFO [Block 5] Epoch 7/10 | Train Loss: 0.007636 | Grad Norm: 0.0051
+[2026-04-29 07:10:59 root] (block_ap.py 424): INFO [Block 5] Epoch 8/10 | Train Loss: 0.007634 | Grad Norm: 0.0050
+[2026-04-29 07:15:09 root] (block_ap.py 424): INFO [Block 5] Epoch 9/10 | Train Loss: 0.007679 | Grad Norm: 0.0048
+[2026-04-29 07:19:19 root] (block_ap.py 424): INFO [Block 5] Epoch 10/10 | Train Loss: 0.007749 | Grad Norm: 0.0047
+[2026-04-29 07:19:42 root] (block_ap.py 287): INFO === Block 6 ===
+[2026-04-29 07:24:15 root] (block_ap.py 424): INFO [Block 6] Epoch 1/10 | Train Loss: 0.409438 | Grad Norm: 13.6615
+[2026-04-29 07:28:25 root] (block_ap.py 424): INFO [Block 6] Epoch 2/10 | Train Loss: 0.145926 | Grad Norm: 5.0340
+[2026-04-29 07:32:35 root] (block_ap.py 424): INFO [Block 6] Epoch 3/10 | Train Loss: 0.089905 | Grad Norm: 2.8851
+[2026-04-29 07:36:45 root] (block_ap.py 424): INFO [Block 6] Epoch 4/10 | Train Loss: 0.068986 | Grad Norm: 2.1126
+[2026-04-29 07:40:55 root] (block_ap.py 424): INFO [Block 6] Epoch 5/10 | Train Loss: 0.059262 | Grad Norm: 1.7570
+[2026-04-29 07:45:06 root] (block_ap.py 424): INFO [Block 6] Epoch 6/10 | Train Loss: 0.054176 | Grad Norm: 1.5786
+[2026-04-29 07:49:15 root] (block_ap.py 424): INFO [Block 6] Epoch 7/10 | Train Loss: 0.044073 | Grad Norm: 1.2744
+[2026-04-29 07:53:25 root] (block_ap.py 424): INFO [Block 6] Epoch 8/10 | Train Loss: 0.044915 | Grad Norm: 1.3256
+[2026-04-29 07:57:34 root] (block_ap.py 424): INFO [Block 6] Epoch 9/10 | Train Loss: 0.041311 | Grad Norm: 1.1884
+[2026-04-29 08:01:47 root] (block_ap.py 424): INFO [Block 6] Epoch 10/10 | Train Loss: 0.041073 | Grad Norm: 1.1832
+[2026-04-29 08:02:10 root] (block_ap.py 287): INFO === Block 7 ===
+[2026-04-29 08:06:43 root] (block_ap.py 424): INFO [Block 7] Epoch 1/10 | Train Loss: 0.030169 | Grad Norm: 0.0182
+[2026-04-29 08:10:53 root] (block_ap.py 424): INFO [Block 7] Epoch 2/10 | Train Loss: 0.026357 | Grad Norm: 0.0141
+[2026-04-29 08:15:03 root] (block_ap.py 424): INFO [Block 7] Epoch 3/10 | Train Loss: 0.025860 | Grad Norm: 0.0132
+[2026-04-29 08:19:13 root] (block_ap.py 424): INFO [Block 7] Epoch 4/10 | Train Loss: 0.025658 | Grad Norm: 0.0127
+[2026-04-29 08:23:23 root] (block_ap.py 424): INFO [Block 7] Epoch 5/10 | Train Loss: 0.025514 | Grad Norm: 0.0122
+[2026-04-29 08:27:34 root] (block_ap.py 424): INFO [Block 7] Epoch 6/10 | Train Loss: 0.025382 | Grad Norm: 0.0117
+[2026-04-29 08:31:53 root] (block_ap.py 424): INFO [Block 7] Epoch 7/10 | Train Loss: 0.025327 | Grad Norm: 0.0117
+[2026-04-29 08:36:12 root] (block_ap.py 424): INFO [Block 7] Epoch 8/10 | Train Loss: 0.025315 | Grad Norm: 0.0114
+[2026-04-29 08:40:28 root] (block_ap.py 424): INFO [Block 7] Epoch 9/10 | Train Loss: 0.025396 | Grad Norm: 0.0113
+[2026-04-29 08:44:37 root] (block_ap.py 424): INFO [Block 7] Epoch 10/10 | Train Loss: 0.025536 | Grad Norm: 0.0112
+[2026-04-29 08:45:01 root] (block_ap.py 287): INFO === Block 8 ===
+[2026-04-29 08:49:41 root] (block_ap.py 424): INFO [Block 8] Epoch 1/10 | Train Loss: 0.037206 | Grad Norm: 0.0194
+[2026-04-29 08:53:58 root] (block_ap.py 424): INFO [Block 8] Epoch 2/10 | Train Loss: 0.033809 | Grad Norm: 0.0161
+[2026-04-29 08:58:09 root] (block_ap.py 424): INFO [Block 8] Epoch 3/10 | Train Loss: 0.033553 | Grad Norm: 0.0156
+[2026-04-29 09:02:19 root] (block_ap.py 424): INFO [Block 8] Epoch 4/10 | Train Loss: 0.033517 | Grad Norm: 0.0155
+[2026-04-29 09:06:29 root] (block_ap.py 424): INFO [Block 8] Epoch 5/10 | Train Loss: 0.033509 | Grad Norm: 0.0153
+[2026-04-29 09:10:38 root] (block_ap.py 424): INFO [Block 8] Epoch 6/10 | Train Loss: 0.033487 | Grad Norm: 0.0145
+[2026-04-29 09:14:48 root] (block_ap.py 424): INFO [Block 8] Epoch 7/10 | Train Loss: 0.033484 | Grad Norm: 0.0144
+[2026-04-29 09:18:58 root] (block_ap.py 424): INFO [Block 8] Epoch 8/10 | Train Loss: 0.033600 | Grad Norm: 0.0140
+[2026-04-29 09:23:08 root] (block_ap.py 424): INFO [Block 8] Epoch 9/10 | Train Loss: 0.033789 | Grad Norm: 0.0138
+[2026-04-29 09:27:18 root] (block_ap.py 424): INFO [Block 8] Epoch 10/10 | Train Loss: 0.034056 | Grad Norm: 0.0135
+[2026-04-29 09:27:42 root] (block_ap.py 287): INFO === Block 9 ===
+[2026-04-29 09:32:15 root] (block_ap.py 424): INFO [Block 9] Epoch 1/10 | Train Loss: 0.041693 | Grad Norm: 0.0303
+[2026-04-29 09:36:24 root] (block_ap.py 424): INFO [Block 9] Epoch 2/10 | Train Loss: 0.037487 | Grad Norm: 0.0253
+[2026-04-29 09:40:33 root] (block_ap.py 424): INFO [Block 9] Epoch 3/10 | Train Loss: 0.037076 | Grad Norm: 0.0237
+[2026-04-29 09:44:43 root] (block_ap.py 424): INFO [Block 9] Epoch 4/10 | Train Loss: 0.036805 | Grad Norm: 0.0221
+[2026-04-29 09:48:53 root] (block_ap.py 424): INFO [Block 9] Epoch 5/10 | Train Loss: 0.036631 | Grad Norm: 0.0212
+[2026-04-29 09:53:03 root] (block_ap.py 424): INFO [Block 9] Epoch 6/10 | Train Loss: 0.036479 | Grad Norm: 0.0202
+[2026-04-29 09:57:14 root] (block_ap.py 424): INFO [Block 9] Epoch 7/10 | Train Loss: 0.036358 | Grad Norm: 0.0194
+[2026-04-29 10:01:24 root] (block_ap.py 424): INFO [Block 9] Epoch 8/10 | Train Loss: 0.036441 | Grad Norm: 0.0191
+[2026-04-29 10:05:33 root] (block_ap.py 424): INFO [Block 9] Epoch 9/10 | Train Loss: 0.036558 | Grad Norm: 0.0184
+[2026-04-29 10:09:43 root] (block_ap.py 424): INFO [Block 9] Epoch 10/10 | Train Loss: 0.036780 | Grad Norm: 0.0175
+[2026-04-29 10:10:05 root] (block_ap.py 287): INFO === Block 10 ===
+[2026-04-29 10:14:38 root] (block_ap.py 424): INFO [Block 10] Epoch 1/10 | Train Loss: 0.040416 | Grad Norm: 0.0415
+[2026-04-29 10:18:47 root] (block_ap.py 424): INFO [Block 10] Epoch 2/10 | Train Loss: 0.036115 | Grad Norm: 0.0309
+[2026-04-29 10:22:57 root] (block_ap.py 424): INFO [Block 10] Epoch 3/10 | Train Loss: 0.035498 | Grad Norm: 0.0278
+[2026-04-29 10:27:07 root] (block_ap.py 424): INFO [Block 10] Epoch 4/10 | Train Loss: 0.035169 | Grad Norm: 0.0253
+[2026-04-29 10:31:18 root] (block_ap.py 424): INFO [Block 10] Epoch 5/10 | Train Loss: 0.034890 | Grad Norm: 0.0233
+[2026-04-29 10:35:28 root] (block_ap.py 424): INFO [Block 10] Epoch 6/10 | Train Loss: 0.034710 | Grad Norm: 0.0230
+[2026-04-29 10:39:37 root] (block_ap.py 424): INFO [Block 10] Epoch 7/10 | Train Loss: 0.034487 | Grad Norm: 0.0213
+[2026-04-29 10:43:47 root] (block_ap.py 424): INFO [Block 10] Epoch 8/10 | Train Loss: 0.034482 | Grad Norm: 0.0207
+[2026-04-29 10:47:57 root] (block_ap.py 424): INFO [Block 10] Epoch 9/10 | Train Loss: 0.034536 | Grad Norm: 0.0196
+[2026-04-29 10:52:06 root] (block_ap.py 424): INFO [Block 10] Epoch 10/10 | Train Loss: 0.034746 | Grad Norm: 0.0186
+[2026-04-29 10:52:30 root] (block_ap.py 287): INFO === Block 11 ===
+[2026-04-29 10:57:02 root] (block_ap.py 424): INFO [Block 11] Epoch 1/10 | Train Loss: 0.043164 | Grad Norm: 0.0304
+[2026-04-29 11:01:12 root] (block_ap.py 424): INFO [Block 11] Epoch 2/10 | Train Loss: 0.038745 | Grad Norm: 0.0245
+[2026-04-29 11:05:23 root] (block_ap.py 424): INFO [Block 11] Epoch 3/10 | Train Loss: 0.038072 | Grad Norm: 0.0223
+[2026-04-29 11:09:32 root] (block_ap.py 424): INFO [Block 11] Epoch 4/10 | Train Loss: 0.037704 | Grad Norm: 0.0207
+[2026-04-29 11:13:42 root] (block_ap.py 424): INFO [Block 11] Epoch 5/10 | Train Loss: 0.037428 | Grad Norm: 0.0193
+[2026-04-29 11:17:52 root] (block_ap.py 424): INFO [Block 11] Epoch 6/10 | Train Loss: 0.037255 | Grad Norm: 0.0187
+[2026-04-29 11:22:01 root] (block_ap.py 424): INFO [Block 11] Epoch 7/10 | Train Loss: 0.037147 | Grad Norm: 0.0184
+[2026-04-29 11:26:11 root] (block_ap.py 424): INFO [Block 11] Epoch 8/10 | Train Loss: 0.037071 | Grad Norm: 0.0177
+[2026-04-29 11:30:21 root] (block_ap.py 424): INFO [Block 11] Epoch 9/10 | Train Loss: 0.037111 | Grad Norm: 0.0165
+[2026-04-29 11:34:31 root] (block_ap.py 424): INFO [Block 11] Epoch 10/10 | Train Loss: 0.037275 | Grad Norm: 0.0160
+[2026-04-29 11:34:55 root] (block_ap.py 287): INFO === Block 12 ===
+[2026-04-29 11:39:28 root] (block_ap.py 424): INFO [Block 12] Epoch 1/10 | Train Loss: 0.046166 | Grad Norm: 0.0325
+[2026-04-29 11:43:37 root] (block_ap.py 424): INFO [Block 12] Epoch 2/10 | Train Loss: 0.041193 | Grad Norm: 0.0236
+[2026-04-29 11:47:47 root] (block_ap.py 424): INFO [Block 12] Epoch 3/10 | Train Loss: 0.040496 | Grad Norm: 0.0217
+[2026-04-29 11:51:57 root] (block_ap.py 424): INFO [Block 12] Epoch 4/10 | Train Loss: 0.040186 | Grad Norm: 0.0207
+[2026-04-29 11:56:07 root] (block_ap.py 424): INFO [Block 12] Epoch 5/10 | Train Loss: 0.039984 | Grad Norm: 0.0199
+[2026-04-29 12:00:17 root] (block_ap.py 424): INFO [Block 12] Epoch 6/10 | Train Loss: 0.039835 | Grad Norm: 0.0188
+[2026-04-29 12:04:27 root] (block_ap.py 424): INFO [Block 12] Epoch 7/10 | Train Loss: 0.039667 | Grad Norm: 0.0182
+[2026-04-29 12:08:38 root] (block_ap.py 424): INFO [Block 12] Epoch 8/10 | Train Loss: 0.039650 | Grad Norm: 0.0179
+[2026-04-29 12:12:47 root] (block_ap.py 424): INFO [Block 12] Epoch 9/10 | Train Loss: 0.039745 | Grad Norm: 0.0176
+[2026-04-29 12:16:57 root] (block_ap.py 424): INFO [Block 12] Epoch 10/10 | Train Loss: 0.040044 | Grad Norm: 0.0175
+[2026-04-29 12:17:20 root] (block_ap.py 287): INFO === Block 13 ===
+[2026-04-29 12:21:52 root] (block_ap.py 424): INFO [Block 13] Epoch 1/10 | Train Loss: 0.051222 | Grad Norm: 0.0328
+[2026-04-29 12:26:01 root] (block_ap.py 424): INFO [Block 13] Epoch 2/10 | Train Loss: 0.045991 | Grad Norm: 0.0209
+[2026-04-29 12:30:12 root] (block_ap.py 424): INFO [Block 13] Epoch 3/10 | Train Loss: 0.045314 | Grad Norm: 0.0194
+[2026-04-29 12:34:22 root] (block_ap.py 424): INFO [Block 13] Epoch 4/10 | Train Loss: 0.045021 | Grad Norm: 0.0184
+[2026-04-29 12:38:32 root] (block_ap.py 424): INFO [Block 13] Epoch 5/10 | Train Loss: 0.044826 | Grad Norm: 0.0174
+[2026-04-29 12:42:41 root] (block_ap.py 424): INFO [Block 13] Epoch 6/10 | Train Loss: 0.044704 | Grad Norm: 0.0167
+[2026-04-29 12:46:51 root] (block_ap.py 424): INFO [Block 13] Epoch 7/10 | Train Loss: 0.044653 | Grad Norm: 0.0164
+[2026-04-29 12:51:01 root] (block_ap.py 424): INFO [Block 13] Epoch 8/10 | Train Loss: 0.044659 | Grad Norm: 0.0161
+[2026-04-29 12:55:11 root] (block_ap.py 424): INFO [Block 13] Epoch 9/10 | Train Loss: 0.044870 | Grad Norm: 0.0161
+[2026-04-29 12:59:21 root] (block_ap.py 424): INFO [Block 13] Epoch 10/10 | Train Loss: 0.045220 | Grad Norm: 0.0164
+[2026-04-29 12:59:44 root] (block_ap.py 287): INFO === Block 14 ===
+[2026-04-29 13:04:16 root] (block_ap.py 424): INFO [Block 14] Epoch 1/10 | Train Loss: 0.052180 | Grad Norm: 0.0348
+[2026-04-29 13:08:26 root] (block_ap.py 424): INFO [Block 14] Epoch 2/10 | Train Loss: 0.046620 | Grad Norm: 0.0229
+[2026-04-29 13:12:36 root] (block_ap.py 424): INFO [Block 14] Epoch 3/10 | Train Loss: 0.045868 | Grad Norm: 0.0213
+[2026-04-29 13:16:46 root] (block_ap.py 424): INFO [Block 14] Epoch 4/10 | Train Loss: 0.045584 | Grad Norm: 0.0205
+[2026-04-29 13:20:57 root] (block_ap.py 424): INFO [Block 14] Epoch 5/10 | Train Loss: 0.045345 | Grad Norm: 0.0194
+[2026-04-29 13:25:07 root] (block_ap.py 424): INFO [Block 14] Epoch 6/10 | Train Loss: 0.045132 | Grad Norm: 0.0185
+[2026-04-29 13:29:17 root] (block_ap.py 424): INFO [Block 14] Epoch 7/10 | Train Loss: 0.045050 | Grad Norm: 0.0183
+[2026-04-29 13:33:27 root] (block_ap.py 424): INFO [Block 14] Epoch 8/10 | Train Loss: 0.045000 | Grad Norm: 0.0179
+[2026-04-29 13:37:36 root] (block_ap.py 424): INFO [Block 14] Epoch 9/10 | Train Loss: 0.045077 | Grad Norm: 0.0178
+[2026-04-29 13:41:46 root] (block_ap.py 424): INFO [Block 14] Epoch 10/10 | Train Loss: 0.045221 | Grad Norm: 0.0178
+[2026-04-29 13:42:14 root] (block_ap.py 287): INFO === Block 15 ===
+[2026-04-29 13:46:47 root] (block_ap.py 424): INFO [Block 15] Epoch 1/10 | Train Loss: 0.056365 | Grad Norm: 0.0519
+[2026-04-29 13:50:58 root] (block_ap.py 424): INFO [Block 15] Epoch 2/10 | Train Loss: 0.050895 | Grad Norm: 0.0208
+[2026-04-29 13:55:07 root] (block_ap.py 424): INFO [Block 15] Epoch 3/10 | Train Loss: 0.050236 | Grad Norm: 0.0193
+[2026-04-29 13:59:17 root] (block_ap.py 424): INFO [Block 15] Epoch 4/10 | Train Loss: 0.049964 | Grad Norm: 0.0181
+[2026-04-29 14:03:26 root] (block_ap.py 424): INFO [Block 15] Epoch 5/10 | Train Loss: 0.049767 | Grad Norm: 0.0169
+[2026-04-29 14:07:36 root] (block_ap.py 424): INFO [Block 15] Epoch 6/10 | Train Loss: 0.049646 | Grad Norm: 0.0165
+[2026-04-29 14:11:46 root] (block_ap.py 424): INFO [Block 15] Epoch 7/10 | Train Loss: 0.049559 | Grad Norm: 0.0162
+[2026-04-29 14:15:56 root] (block_ap.py 424): INFO [Block 15] Epoch 8/10 | Train Loss: 0.049574 | Grad Norm: 0.0161
+[2026-04-29 14:20:06 root] (block_ap.py 424): INFO [Block 15] Epoch 9/10 | Train Loss: 0.049695 | Grad Norm: 0.0161
+[2026-04-29 14:24:17 root] (block_ap.py 424): INFO [Block 15] Epoch 10/10 | Train Loss: 0.049977 | Grad Norm: 0.0162
+[2026-04-29 14:24:40 root] (block_ap.py 287): INFO === Block 16 ===
+[2026-04-29 14:29:12 root] (block_ap.py 424): INFO [Block 16] Epoch 1/10 | Train Loss: 4.206317 | Grad Norm: 17.8986
+[2026-04-29 14:33:22 root] (block_ap.py 424): INFO [Block 16] Epoch 2/10 | Train Loss: 3.838525 | Grad Norm: 12.3718
+[2026-04-29 14:37:31 root] (block_ap.py 424): INFO [Block 16] Epoch 3/10 | Train Loss: 3.715693 | Grad Norm: 11.6247
+[2026-04-29 14:41:42 root] (block_ap.py 424): INFO [Block 16] Epoch 4/10 | Train Loss: 3.590853 | Grad Norm: 11.5569
+[2026-04-29 14:45:52 root] (block_ap.py 424): INFO [Block 16] Epoch 5/10 | Train Loss: 3.474324 | Grad Norm: 12.1737
+[2026-04-29 14:50:02 root] (block_ap.py 424): INFO [Block 16] Epoch 6/10 | Train Loss: 3.356241 | Grad Norm: 13.2386
+[2026-04-29 14:54:12 root] (block_ap.py 424): INFO [Block 16] Epoch 7/10 | Train Loss: 3.237093 | Grad Norm: 14.4974
+[2026-04-29 14:58:21 root] (block_ap.py 424): INFO [Block 16] Epoch 8/10 | Train Loss: 3.120242 | Grad Norm: 15.4201
+[2026-04-29 15:02:31 root] (block_ap.py 424): INFO [Block 16] Epoch 9/10 | Train Loss: 3.037144 | Grad Norm: 16.3992
+[2026-04-29 15:06:41 root] (block_ap.py 424): INFO [Block 16] Epoch 10/10 | Train Loss: 2.995316 | Grad Norm: 16.9435
+[2026-04-29 15:07:04 root] (block_ap.py 287): INFO === Block 17 ===
+[2026-04-29 15:11:37 root] (block_ap.py 424): INFO [Block 17] Epoch 1/10 | Train Loss: 2.653104 | Grad Norm: 0.1624
+[2026-04-29 15:15:47 root] (block_ap.py 424): INFO [Block 17] Epoch 2/10 | Train Loss: 2.624830 | Grad Norm: 0.5408
+[2026-04-29 15:19:57 root] (block_ap.py 424): INFO [Block 17] Epoch 3/10 | Train Loss: 2.593102 | Grad Norm: 1.3237
+[2026-04-29 15:24:07 root] (block_ap.py 424): INFO [Block 17] Epoch 4/10 | Train Loss: 2.552959 | Grad Norm: 2.5436
+[2026-04-29 15:28:17 root] (block_ap.py 424): INFO [Block 17] Epoch 5/10 | Train Loss: 2.486219 | Grad Norm: 5.8713
+[2026-04-29 15:32:26 root] (block_ap.py 424): INFO [Block 17] Epoch 6/10 | Train Loss: 2.425236 | Grad Norm: 10.6338
+[2026-04-29 15:36:36 root] (block_ap.py 424): INFO [Block 17] Epoch 7/10 | Train Loss: 2.365737 | Grad Norm: 13.5923
+[2026-04-29 15:40:46 root] (block_ap.py 424): INFO [Block 17] Epoch 8/10 | Train Loss: 2.307790 | Grad Norm: 14.7768
+[2026-04-29 15:44:56 root] (block_ap.py 424): INFO [Block 17] Epoch 9/10 | Train Loss: 2.254880 | Grad Norm: 14.6785
+[2026-04-29 15:49:06 root] (block_ap.py 424): INFO [Block 17] Epoch 10/10 | Train Loss: 2.238871 | Grad Norm: 15.9142
+[2026-04-29 15:49:29 root] (block_ap.py 287): INFO === Block 18 ===
+[2026-04-29 15:54:01 root] (block_ap.py 424): INFO [Block 18] Epoch 1/10 | Train Loss: 2.039609 | Grad Norm: 0.2230
+[2026-04-29 15:58:11 root] (block_ap.py 424): INFO [Block 18] Epoch 2/10 | Train Loss: 1.978472 | Grad Norm: 0.2976
+[2026-04-29 16:02:20 root] (block_ap.py 424): INFO [Block 18] Epoch 3/10 | Train Loss: 1.952712 | Grad Norm: 0.3850
+[2026-04-29 16:06:30 root] (block_ap.py 424): INFO [Block 18] Epoch 4/10 | Train Loss: 1.942743 | Grad Norm: 0.4582
+[2026-04-29 16:10:40 root] (block_ap.py 424): INFO [Block 18] Epoch 5/10 | Train Loss: 1.936105 | Grad Norm: 0.5868
+[2026-04-29 16:14:51 root] (block_ap.py 424): INFO [Block 18] Epoch 6/10 | Train Loss: 1.940310 | Grad Norm: 0.8482
+[2026-04-29 16:19:00 root] (block_ap.py 424): INFO [Block 18] Epoch 7/10 | Train Loss: 1.927268 | Grad Norm: 0.8460
+[2026-04-29 16:23:10 root] (block_ap.py 424): INFO [Block 18] Epoch 8/10 | Train Loss: 1.922034 | Grad Norm: 1.0119
+[2026-04-29 16:27:20 root] (block_ap.py 424): INFO [Block 18] Epoch 9/10 | Train Loss: 1.917871 | Grad Norm: 1.1605
+[2026-04-29 16:31:29 root] (block_ap.py 424): INFO [Block 18] Epoch 10/10 | Train Loss: 1.914500 | Grad Norm: 1.2569
+[2026-04-29 16:31:53 root] (block_ap.py 287): INFO === Block 19 ===
+[2026-04-29 16:36:26 root] (block_ap.py 424): INFO [Block 19] Epoch 1/10 | Train Loss: 1.912594 | Grad Norm: 0.1187
+[2026-04-29 16:40:36 root] (block_ap.py 424): INFO [Block 19] Epoch 2/10 | Train Loss: 1.892033 | Grad Norm: 0.1764
+[2026-04-29 16:44:46 root] (block_ap.py 424): INFO [Block 19] Epoch 3/10 | Train Loss: 1.877052 | Grad Norm: 0.3074
+[2026-04-29 16:48:55 root] (block_ap.py 424): INFO [Block 19] Epoch 4/10 | Train Loss: 1.857753 | Grad Norm: 0.4615
+[2026-04-29 16:53:04 root] (block_ap.py 424): INFO [Block 19] Epoch 5/10 | Train Loss: 1.830385 | Grad Norm: 0.7264
+[2026-04-29 16:57:14 root] (block_ap.py 424): INFO [Block 19] Epoch 6/10 | Train Loss: 1.798588 | Grad Norm: 0.9752
+[2026-04-29 17:01:24 root] (block_ap.py 424): INFO [Block 19] Epoch 7/10 | Train Loss: 1.779044 | Grad Norm: 1.1177
+[2026-04-29 17:05:34 root] (block_ap.py 424): INFO [Block 19] Epoch 8/10 | Train Loss: 1.761543 | Grad Norm: 1.1794
+[2026-04-29 17:09:45 root] (block_ap.py 424): INFO [Block 19] Epoch 9/10 | Train Loss: 1.747447 | Grad Norm: 1.2014
+[2026-04-29 17:13:56 root] (block_ap.py 424): INFO [Block 19] Epoch 10/10 | Train Loss: 1.739540 | Grad Norm: 1.1304
+[2026-04-29 17:14:19 root] (block_ap.py 287): INFO === Block 20 ===
+[2026-04-29 17:18:53 root] (block_ap.py 424): INFO [Block 20] Epoch 1/10 | Train Loss: 1.722625 | Grad Norm: 0.1070
+[2026-04-29 17:23:02 root] (block_ap.py 424): INFO [Block 20] Epoch 2/10 | Train Loss: 1.702008 | Grad Norm: 0.1567
+[2026-04-29 17:27:12 root] (block_ap.py 424): INFO [Block 20] Epoch 3/10 | Train Loss: 1.689673 | Grad Norm: 0.2462
+[2026-04-29 17:31:22 root] (block_ap.py 424): INFO [Block 20] Epoch 4/10 | Train Loss: 1.681536 | Grad Norm: 0.3681
+[2026-04-29 17:35:32 root] (block_ap.py 424): INFO [Block 20] Epoch 5/10 | Train Loss: 1.661288 | Grad Norm: 0.5716
+[2026-04-29 17:39:42 root] (block_ap.py 424): INFO [Block 20] Epoch 6/10 | Train Loss: 1.629362 | Grad Norm: 0.9274
+[2026-04-29 17:43:53 root] (block_ap.py 424): INFO [Block 20] Epoch 7/10 | Train Loss: 1.586307 | Grad Norm: 1.3374
+[2026-04-29 17:48:03 root] (block_ap.py 424): INFO [Block 20] Epoch 8/10 | Train Loss: 1.544976 | Grad Norm: 1.9285
+[2026-04-29 17:52:13 root] (block_ap.py 424): INFO [Block 20] Epoch 9/10 | Train Loss: 1.512899 | Grad Norm: 2.5545
+[2026-04-29 17:56:22 root] (block_ap.py 424): INFO [Block 20] Epoch 10/10 | Train Loss: 1.493850 | Grad Norm: 2.6430
+[2026-04-29 17:56:45 root] (block_ap.py 287): INFO === Block 21 ===
+[2026-04-29 18:01:18 root] (block_ap.py 424): INFO [Block 21] Epoch 1/10 | Train Loss: 1.477042 | Grad Norm: 0.1433
+[2026-04-29 18:05:28 root] (block_ap.py 424): INFO [Block 21] Epoch 2/10 | Train Loss: 1.449535 | Grad Norm: 0.1912
+[2026-04-29 18:09:38 root] (block_ap.py 424): INFO [Block 21] Epoch 3/10 | Train Loss: 1.439875 | Grad Norm: 0.3186
+[2026-04-29 18:13:48 root] (block_ap.py 424): INFO [Block 21] Epoch 4/10 | Train Loss: 1.429214 | Grad Norm: 0.5169
+[2026-04-29 18:17:58 root] (block_ap.py 424): INFO [Block 21] Epoch 5/10 | Train Loss: 1.419845 | Grad Norm: 0.8578
+[2026-04-29 18:22:07 root] (block_ap.py 424): INFO [Block 21] Epoch 6/10 | Train Loss: 1.410106 | Grad Norm: 1.1742
+[2026-04-29 18:26:17 root] (block_ap.py 424): INFO [Block 21] Epoch 7/10 | Train Loss: 1.401969 | Grad Norm: 1.5116
+[2026-04-29 18:30:26 root] (block_ap.py 424): INFO [Block 21] Epoch 8/10 | Train Loss: 1.394504 | Grad Norm: 1.6160
+[2026-04-29 18:34:36 root] (block_ap.py 424): INFO [Block 21] Epoch 9/10 | Train Loss: 1.390266 | Grad Norm: 1.7694
+[2026-04-29 18:38:46 root] (block_ap.py 424): INFO [Block 21] Epoch 10/10 | Train Loss: 1.388069 | Grad Norm: 1.8870
+[2026-04-29 18:39:09 root] (block_ap.py 287): INFO === Block 22 ===
+[2026-04-29 18:43:43 root] (block_ap.py 424): INFO [Block 22] Epoch 1/10 | Train Loss: 1.403800 | Grad Norm: 0.2195
+[2026-04-29 18:47:53 root] (block_ap.py 424): INFO [Block 22] Epoch 2/10 | Train Loss: 1.368212 | Grad Norm: 0.2878
+[2026-04-29 18:52:03 root] (block_ap.py 424): INFO [Block 22] Epoch 3/10 | Train Loss: 1.350486 | Grad Norm: 0.4187
+[2026-04-29 18:56:13 root] (block_ap.py 424): INFO [Block 22] Epoch 4/10 | Train Loss: 1.335155 | Grad Norm: 0.5431
+[2026-04-29 19:00:23 root] (block_ap.py 424): INFO [Block 22] Epoch 5/10 | Train Loss: 1.323089 | Grad Norm: 0.6462
+[2026-04-29 19:04:32 root] (block_ap.py 424): INFO [Block 22] Epoch 6/10 | Train Loss: 1.312944 | Grad Norm: 0.7536
+[2026-04-29 19:08:42 root] (block_ap.py 424): INFO [Block 22] Epoch 7/10 | Train Loss: 1.303887 | Grad Norm: 0.8434
+[2026-04-29 19:12:52 root] (block_ap.py 424): INFO [Block 22] Epoch 8/10 | Train Loss: 1.297030 | Grad Norm: 0.9114
+[2026-04-29 19:17:01 root] (block_ap.py 424): INFO [Block 22] Epoch 9/10 | Train Loss: 1.291736 | Grad Norm: 0.9441
+[2026-04-29 19:21:11 root] (block_ap.py 424): INFO [Block 22] Epoch 10/10 | Train Loss: 1.289013 | Grad Norm: 0.9700
+[2026-04-29 19:21:33 root] (block_ap.py 287): INFO === Block 23 ===
+[2026-04-29 19:26:06 root] (block_ap.py 424): INFO [Block 23] Epoch 1/10 | Train Loss: 1.381156 | Grad Norm: 0.2094
+[2026-04-29 19:30:16 root] (block_ap.py 424): INFO [Block 23] Epoch 2/10 | Train Loss: 1.354095 | Grad Norm: 0.1746
+[2026-04-29 19:34:26 root] (block_ap.py 424): INFO [Block 23] Epoch 3/10 | Train Loss: 1.349212 | Grad Norm: 0.1799
+[2026-04-29 19:38:35 root] (block_ap.py 424): INFO [Block 23] Epoch 4/10 | Train Loss: 1.345176 | Grad Norm: 0.1968
+[2026-04-29 19:42:45 root] (block_ap.py 424): INFO [Block 23] Epoch 5/10 | Train Loss: 1.341672 | Grad Norm: 0.2222
+[2026-04-29 19:46:54 root] (block_ap.py 424): INFO [Block 23] Epoch 6/10 | Train Loss: 1.338238 | Grad Norm: 0.2643
+[2026-04-29 19:51:04 root] (block_ap.py 424): INFO [Block 23] Epoch 7/10 | Train Loss: 1.335157 | Grad Norm: 0.2917
+[2026-04-29 19:55:15 root] (block_ap.py 424): INFO [Block 23] Epoch 8/10 | Train Loss: 1.332253 | Grad Norm: 0.3213
+[2026-04-29 19:59:25 root] (block_ap.py 424): INFO [Block 23] Epoch 9/10 | Train Loss: 1.330513 | Grad Norm: 0.3362
+[2026-04-29 20:03:34 root] (block_ap.py 424): INFO [Block 23] Epoch 10/10 | Train Loss: 1.329628 | Grad Norm: 0.3509
+[2026-04-29 20:04:02 root] (block_ap.py 287): INFO === Block 24 ===
+[2026-04-29 20:08:34 root] (block_ap.py 424): INFO [Block 24] Epoch 1/10 | Train Loss: 1.463083 | Grad Norm: 0.3369
+[2026-04-29 20:12:44 root] (block_ap.py 424): INFO [Block 24] Epoch 2/10 | Train Loss: 1.424272 | Grad Norm: 0.2859
+[2026-04-29 20:16:53 root] (block_ap.py 424): INFO [Block 24] Epoch 3/10 | Train Loss: 1.417062 | Grad Norm: 0.3537
+[2026-04-29 20:21:03 root] (block_ap.py 424): INFO [Block 24] Epoch 4/10 | Train Loss: 1.407844 | Grad Norm: 0.4773
+[2026-04-29 20:25:12 root] (block_ap.py 424): INFO [Block 24] Epoch 5/10 | Train Loss: 1.397135 | Grad Norm: 0.6578
+[2026-04-29 20:29:22 root] (block_ap.py 424): INFO [Block 24] Epoch 6/10 | Train Loss: 1.385906 | Grad Norm: 0.8452
+[2026-04-29 20:33:33 root] (block_ap.py 424): INFO [Block 24] Epoch 7/10 | Train Loss: 1.376376 | Grad Norm: 0.9938
+[2026-04-29 20:37:42 root] (block_ap.py 424): INFO [Block 24] Epoch 8/10 | Train Loss: 1.368426 | Grad Norm: 1.1014
+[2026-04-29 20:41:51 root] (block_ap.py 424): INFO [Block 24] Epoch 9/10 | Train Loss: 1.362405 | Grad Norm: 1.1694
+[2026-04-29 20:46:01 root] (block_ap.py 424): INFO [Block 24] Epoch 10/10 | Train Loss: 1.358874 | Grad Norm: 1.2204
+[2026-04-29 20:46:26 root] (block_ap.py 287): INFO === Block 25 ===
+[2026-04-29 20:50:59 root] (block_ap.py 424): INFO [Block 25] Epoch 1/10 | Train Loss: 1.473636 | Grad Norm: 0.2736
+[2026-04-29 20:55:08 root] (block_ap.py 424): INFO [Block 25] Epoch 2/10 | Train Loss: 1.434891 | Grad Norm: 0.2492
+[2026-04-29 20:59:17 root] (block_ap.py 424): INFO [Block 25] Epoch 3/10 | Train Loss: 1.422912 | Grad Norm: 0.3342
+[2026-04-29 21:03:27 root] (block_ap.py 424): INFO [Block 25] Epoch 4/10 | Train Loss: 1.413007 | Grad Norm: 0.4040
+[2026-04-29 21:07:37 root] (block_ap.py 424): INFO [Block 25] Epoch 5/10 | Train Loss: 1.403203 | Grad Norm: 0.4676
+[2026-04-29 21:11:48 root] (block_ap.py 424): INFO [Block 25] Epoch 6/10 | Train Loss: 1.394358 | Grad Norm: 0.5574
+[2026-04-29 21:15:58 root] (block_ap.py 424): INFO [Block 25] Epoch 7/10 | Train Loss: 1.387730 | Grad Norm: 0.5944
+[2026-04-29 21:20:08 root] (block_ap.py 424): INFO [Block 25] Epoch 8/10 | Train Loss: 1.382671 | Grad Norm: 0.6371
+[2026-04-29 21:24:19 root] (block_ap.py 424): INFO [Block 25] Epoch 9/10 | Train Loss: 1.379174 | Grad Norm: 0.6568
+[2026-04-29 21:28:29 root] (block_ap.py 424): INFO [Block 25] Epoch 10/10 | Train Loss: 1.377527 | Grad Norm: 0.6693
+[2026-04-29 21:28:52 root] (block_ap.py 287): INFO === Block 26 ===
+[2026-04-29 21:33:23 root] (block_ap.py 424): INFO [Block 26] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 21:37:32 root] (block_ap.py 424): INFO [Block 26] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 21:41:40 root] (block_ap.py 424): INFO [Block 26] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 21:45:50 root] (block_ap.py 424): INFO [Block 26] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 21:49:58 root] (block_ap.py 424): INFO [Block 26] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 21:54:06 root] (block_ap.py 424): INFO [Block 26] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 21:58:14 root] (block_ap.py 424): INFO [Block 26] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:02:23 root] (block_ap.py 424): INFO [Block 26] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:06:32 root] (block_ap.py 424): INFO [Block 26] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:10:41 root] (block_ap.py 424): INFO [Block 26] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:11:09 root] (block_ap.py 287): INFO === Block 27 ===
+[2026-04-29 22:15:39 root] (block_ap.py 424): INFO [Block 27] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:19:49 root] (block_ap.py 424): INFO [Block 27] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:23:56 root] (block_ap.py 424): INFO [Block 27] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:28:04 root] (block_ap.py 424): INFO [Block 27] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:32:12 root] (block_ap.py 424): INFO [Block 27] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:36:20 root] (block_ap.py 424): INFO [Block 27] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:40:29 root] (block_ap.py 424): INFO [Block 27] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:44:37 root] (block_ap.py 424): INFO [Block 27] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:48:46 root] (block_ap.py 424): INFO [Block 27] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:52:54 root] (block_ap.py 424): INFO [Block 27] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 22:53:17 root] (block_ap.py 287): INFO === Block 28 ===
+[2026-04-29 22:57:50 root] (block_ap.py 424): INFO [Block 28] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:01:58 root] (block_ap.py 424): INFO [Block 28] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:06:06 root] (block_ap.py 424): INFO [Block 28] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:10:14 root] (block_ap.py 424): INFO [Block 28] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:14:23 root] (block_ap.py 424): INFO [Block 28] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:18:30 root] (block_ap.py 424): INFO [Block 28] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:22:38 root] (block_ap.py 424): INFO [Block 28] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:26:46 root] (block_ap.py 424): INFO [Block 28] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:30:54 root] (block_ap.py 424): INFO [Block 28] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:35:03 root] (block_ap.py 424): INFO [Block 28] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:35:32 root] (block_ap.py 287): INFO === Block 29 ===
+[2026-04-29 23:40:09 root] (block_ap.py 424): INFO [Block 29] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:44:17 root] (block_ap.py 424): INFO [Block 29] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:48:25 root] (block_ap.py 424): INFO [Block 29] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:52:33 root] (block_ap.py 424): INFO [Block 29] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-29 23:56:42 root] (block_ap.py 424): INFO [Block 29] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:00:49 root] (block_ap.py 424): INFO [Block 29] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:04:58 root] (block_ap.py 424): INFO [Block 29] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:09:06 root] (block_ap.py 424): INFO [Block 29] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:13:14 root] (block_ap.py 424): INFO [Block 29] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:17:22 root] (block_ap.py 424): INFO [Block 29] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:17:45 root] (block_ap.py 287): INFO === Block 30 ===
+[2026-04-30 00:22:18 root] (block_ap.py 424): INFO [Block 30] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:26:25 root] (block_ap.py 424): INFO [Block 30] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:30:33 root] (block_ap.py 424): INFO [Block 30] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:34:41 root] (block_ap.py 424): INFO [Block 30] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:38:49 root] (block_ap.py 424): INFO [Block 30] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:42:57 root] (block_ap.py 424): INFO [Block 30] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:47:05 root] (block_ap.py 424): INFO [Block 30] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:51:14 root] (block_ap.py 424): INFO [Block 30] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:55:22 root] (block_ap.py 424): INFO [Block 30] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:59:29 root] (block_ap.py 424): INFO [Block 30] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 00:59:52 root] (block_ap.py 287): INFO === Block 31 ===
+[2026-04-30 01:04:22 root] (block_ap.py 424): INFO [Block 31] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:08:29 root] (block_ap.py 424): INFO [Block 31] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:12:36 root] (block_ap.py 424): INFO [Block 31] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:16:44 root] (block_ap.py 424): INFO [Block 31] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:20:51 root] (block_ap.py 424): INFO [Block 31] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:24:59 root] (block_ap.py 424): INFO [Block 31] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:29:06 root] (block_ap.py 424): INFO [Block 31] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:33:14 root] (block_ap.py 424): INFO [Block 31] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:37:21 root] (block_ap.py 424): INFO [Block 31] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:41:29 root] (block_ap.py 424): INFO [Block 31] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:41:52 root] (block_ap.py 287): INFO === Block 32 ===
+[2026-04-30 01:46:22 root] (block_ap.py 424): INFO [Block 32] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:50:30 root] (block_ap.py 424): INFO [Block 32] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:54:38 root] (block_ap.py 424): INFO [Block 32] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 01:58:45 root] (block_ap.py 424): INFO [Block 32] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:02:52 root] (block_ap.py 424): INFO [Block 32] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:07:01 root] (block_ap.py 424): INFO [Block 32] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:11:08 root] (block_ap.py 424): INFO [Block 32] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:15:16 root] (block_ap.py 424): INFO [Block 32] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:19:23 root] (block_ap.py 424): INFO [Block 32] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:23:31 root] (block_ap.py 424): INFO [Block 32] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:23:55 root] (block_ap.py 287): INFO === Block 33 ===
+[2026-04-30 02:28:25 root] (block_ap.py 424): INFO [Block 33] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:32:33 root] (block_ap.py 424): INFO [Block 33] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:36:41 root] (block_ap.py 424): INFO [Block 33] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:40:48 root] (block_ap.py 424): INFO [Block 33] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:44:57 root] (block_ap.py 424): INFO [Block 33] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:49:04 root] (block_ap.py 424): INFO [Block 33] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:53:11 root] (block_ap.py 424): INFO [Block 33] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 02:57:19 root] (block_ap.py 424): INFO [Block 33] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:01:26 root] (block_ap.py 424): INFO [Block 33] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:05:33 root] (block_ap.py 424): INFO [Block 33] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:05:56 root] (block_ap.py 287): INFO === Block 34 ===
+[2026-04-30 03:10:27 root] (block_ap.py 424): INFO [Block 34] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:14:34 root] (block_ap.py 424): INFO [Block 34] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:18:42 root] (block_ap.py 424): INFO [Block 34] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:22:50 root] (block_ap.py 424): INFO [Block 34] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:26:57 root] (block_ap.py 424): INFO [Block 34] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:31:05 root] (block_ap.py 424): INFO [Block 34] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:35:13 root] (block_ap.py 424): INFO [Block 34] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:39:20 root] (block_ap.py 424): INFO [Block 34] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:43:28 root] (block_ap.py 424): INFO [Block 34] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:47:35 root] (block_ap.py 424): INFO [Block 34] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:47:57 root] (block_ap.py 287): INFO === Block 35 ===
+[2026-04-30 03:52:28 root] (block_ap.py 424): INFO [Block 35] Epoch 1/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 03:56:35 root] (block_ap.py 424): INFO [Block 35] Epoch 2/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:00:42 root] (block_ap.py 424): INFO [Block 35] Epoch 3/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:04:50 root] (block_ap.py 424): INFO [Block 35] Epoch 4/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:08:57 root] (block_ap.py 424): INFO [Block 35] Epoch 5/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:13:04 root] (block_ap.py 424): INFO [Block 35] Epoch 6/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:17:12 root] (block_ap.py 424): INFO [Block 35] Epoch 7/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:21:19 root] (block_ap.py 424): INFO [Block 35] Epoch 8/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:25:26 root] (block_ap.py 424): INFO [Block 35] Epoch 9/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:29:34 root] (block_ap.py 424): INFO [Block 35] Epoch 10/10 | Train Loss: nan | Grad Norm: nan
+[2026-04-30 04:30:04 root] (block_main.py 215): INFO quant time: 91490.34s
+[2026-04-30 04:30:04 root] (block_main.py 220): INFO start saving model
+[2026-04-30 04:30:19 root] (block_main.py 223): INFO save model success

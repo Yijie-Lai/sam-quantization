@@ -1,0 +1,14 @@
+[2026-05-03 01:06:16 root] (block_main.py 167): INFO Namespace(model=None, cache_dir='./cache', output_dir='./log/', save_quant_dir=None, real_quant=False, resume_quant='/share/MY-DAPO/block_qat/qwen3-1.7b-w2g128-sam/', calib_dataset='wikitext2', train_size=8192, val_size=64, training_seqlen=2048, batch_size=64, epochs=2, ppl_seqlen=2048, seed=2, eval_ppl=False, eval_tasks='gsm8k', eval_batch_size=16, wbits=2, group_size=128, quant_lr=0.0001, weight_lr=1e-05, min_lr_factor=20, clip_grad=0.1, wd=0, net='qwen3', max_memory='70GiB', early_stop=0, off_load_to_disk=False, use_progressive=False, target_bits=2, r_shape_mode='scalar', rho=0.05, ema_momentum=0.05, use_sam=False, sam_rho=0.05, use_soft_round=False, soft_round_type='tanh', soft_round_t=12)
+[2026-05-03 01:06:23 lm_eval.models.huggingface] (huggingface.py 101): WARNING `pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+[2026-05-03 01:06:23 lm_eval.models.huggingface] (huggingface.py 292): WARNING Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[2026-05-03 01:06:26 lm_eval.evaluator] (evaluator.py 189): INFO Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+[2026-05-03 01:06:26 lm_eval.evaluator] (evaluator.py 243): INFO Using pre-initialized model
+[2026-05-03 01:06:31 lm_eval.evaluator] (evaluator.py 290): INFO gsm8k: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+[2026-05-03 01:06:31 lm_eval.evaluator] (evaluator.py 309): WARNING Overwriting default num_fewshot of gsm8k from 5 to 5
+[2026-05-03 01:06:31 lm_eval.api.task] (task.py 434): INFO Building contexts for gsm8k on rank 0...
+[2026-05-03 01:06:36 lm_eval.evaluator] (evaluator.py 559): INFO Running generate_until requests
+[2026-05-03 01:29:18 root] (block_main.py 62): INFO |Tasks|Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
+|-----|------:|----------------|-----:|-----------|---|-----:|---|-----:|
+|gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.1986|±  |0.0110|
+|     |       |strict-match    |     5|exact_match|↑  |0.1418|±  |0.0096|
+

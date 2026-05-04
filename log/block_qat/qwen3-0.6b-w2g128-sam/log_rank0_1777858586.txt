@@ -1,0 +1,135 @@
+[2026-05-04 01:36:26 root] (block_main.py 167): INFO Namespace(model='Qwen/Qwen3-0.6B', cache_dir='./cache', output_dir='./log/block_qat/qwen3-0.6b-w2g128-sam', save_quant_dir='/share/MY-DAPO/block_qat/qwen3-0.6b-w2g128-sam', real_quant=False, resume_quant=None, calib_dataset='sweep_0.8', train_size=4096, val_size=64, training_seqlen=2048, batch_size=2, epochs=10, ppl_seqlen=2048, seed=2, eval_ppl=False, eval_tasks='', eval_batch_size=16, wbits=2, group_size=128, quant_lr=0.0001, weight_lr=2e-05, min_lr_factor=20, clip_grad=0.1, wd=0, net=None, max_memory='70GiB', early_stop=0, off_load_to_disk=False, use_progressive=False, target_bits=2, r_shape_mode='scalar', rho=0.05, ema_momentum=0.05, use_sam=True, sam_rho=0.05, use_soft_round=False, soft_round_type='tanh', soft_round_t=12)
+[2026-05-04 01:36:26 root] (block_main.py 171): INFO net is None, setting as Qwen3-0.6B
+[2026-05-04 01:36:26 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 722f45ae-68c0-4a92-9469-5e9c5c684fe5)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json
+[2026-05-04 01:36:26 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 1s [Retry 1/5].
+[2026-05-04 01:36:27 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: ee9b2af4-71e4-4d2d-8483-332fa607a12e)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json
+[2026-05-04 01:36:27 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 2s [Retry 2/5].
+[2026-05-04 01:36:29 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: b6112314-eec0-4832-89a8-afe2247183bd)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json
+[2026-05-04 01:36:29 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 4s [Retry 3/5].
+[2026-05-04 01:36:33 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: f546ed6b-c3e8-42d3-a2d2-be616b839672)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json
+[2026-05-04 01:36:33 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 4/5].
+[2026-05-04 01:36:41 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 1db6ba87-ff8a-4761-a252-cc92db11e729)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json
+[2026-05-04 01:36:41 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 5/5].
+[2026-05-04 01:36:49 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 615915d3-238f-47d6-a5b4-1e047438b0ed)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json
+[2026-05-04 01:36:49 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: fa061510-224a-460c-ad22-64e5704ea19c)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json
+[2026-05-04 01:36:49 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 1s [Retry 1/5].
+[2026-05-04 01:36:50 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 88a12fc9-e36f-4eee-9ae2-b2087047d793)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json
+[2026-05-04 01:36:50 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 2s [Retry 2/5].
+[2026-05-04 01:36:52 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 81156494-d5c3-4947-8e69-cd6f60ae8406)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json
+[2026-05-04 01:36:52 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 4s [Retry 3/5].
+[2026-05-04 01:36:56 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 2a82d932-43b7-4504-b378-3025e6e0b96b)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json
+[2026-05-04 01:36:56 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 4/5].
+[2026-05-04 01:37:04 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 8e69bb7d-4e07-4f7d-aac8-49a2e534be70)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json
+[2026-05-04 01:37:04 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 5/5].
+[2026-05-04 01:37:12 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 0f29bf7d-95a4-4257-8fed-4a2f3694d156)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/tokenizer_config.json
+[2026-05-04 01:37:14 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/generation_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: bdf0c1c2-ce9f-4880-8d13-1544353033b4)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/generation_config.json
+[2026-05-04 01:37:14 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 1s [Retry 1/5].
+[2026-05-04 01:37:15 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/generation_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 2e780a21-6efb-4b03-8768-1b6bd9758dd5)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/generation_config.json
+[2026-05-04 01:37:15 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 2s [Retry 2/5].
+[2026-05-04 01:37:17 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/generation_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 2c104d75-3603-4015-82ea-a9e8ff677c0c)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/generation_config.json
+[2026-05-04 01:37:17 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 4s [Retry 3/5].
+[2026-05-04 01:37:21 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/generation_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 7cbd9d20-5516-4e29-8921-614bfbc47998)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/generation_config.json
+[2026-05-04 01:37:21 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 4/5].
+[2026-05-04 01:37:29 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/generation_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 066b3dfe-230a-4e06-b2ab-1e5ddf429342)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/generation_config.json
+[2026-05-04 01:37:29 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 5/5].
+[2026-05-04 01:37:37 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/generation_config.json (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: fcf7d58b-c1ba-451d-8624-8cfc1603f0ee)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/generation_config.json
+[2026-05-04 01:37:37 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: c12f799c-6b4c-4838-bee5-6c40733e7e4c)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py
+[2026-05-04 01:37:37 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 1s [Retry 1/5].
+[2026-05-04 01:37:38 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: cb6ab720-7f5f-4924-87ee-f81ea1584b30)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py
+[2026-05-04 01:37:38 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 2s [Retry 2/5].
+[2026-05-04 01:37:40 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 4089c343-8b6e-4921-afa6-ab27135503d5)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py
+[2026-05-04 01:37:40 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 4s [Retry 3/5].
+[2026-05-04 01:37:44 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 920157e7-9da9-4b9a-87a4-ada9dc7fbab0)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py
+[2026-05-04 01:37:44 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 4/5].
+[2026-05-04 01:37:52 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 385f967f-ef4c-489a-b192-dd46a9fd6363)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py
+[2026-05-04 01:37:52 huggingface_hub.utils._http] (_http.py 329): WARNING Retrying in 8s [Retry 5/5].
+[2026-05-04 01:38:00 huggingface_hub.utils._http] (_http.py 320): WARNING '(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py (Caused by ProxyError(\'Unable to connect to proxy\', NewConnectionError("HTTPSConnection(host=\'127.0.0.1\', port=19999): Failed to establish a new connection: [Errno 111] Connection refused")))'), '(Request ID: 17ff85e0-a610-4f07-bf53-df974679d0e8)')' thrown while requesting HEAD https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/custom_generate/generate.py
+[2026-05-04 01:38:00 root] (block_main.py 195): INFO === start quantization ===
+[2026-05-04 01:38:01 root] (block_main.py 203): INFO load trainloader from ./cache/dataloader_Qwen3-0.6B_sweep_0.8_4096_64_2048_train.cache
+[2026-05-04 01:38:01 root] (block_main.py 205): INFO load valloader from ./cache/dataloader_Qwen3-0.6B_sweep_0.8_4096_64_2048_val.cache
+[2026-05-04 01:38:01 root] (block_ap.py 166): INFO Starting ...
+[2026-05-04 01:38:08 root] (block_ap.py 301): INFO === Block 0 ===
+[2026-05-04 01:40:18 root] (block_ap.py 444): INFO [Block 0] Epoch 1/10 | Train Loss: 0.005207 | Grad Norm: 0.0096
+[2026-05-04 01:42:07 root] (block_ap.py 444): INFO [Block 0] Epoch 2/10 | Train Loss: 0.003278 | Grad Norm: 0.0079
+[2026-05-04 01:43:48 root] (block_ap.py 444): INFO [Block 0] Epoch 3/10 | Train Loss: 0.003094 | Grad Norm: 0.0073
+[2026-05-04 01:45:25 root] (block_ap.py 444): INFO [Block 0] Epoch 4/10 | Train Loss: 0.003013 | Grad Norm: 0.0070
+[2026-05-04 01:47:03 root] (block_ap.py 444): INFO [Block 0] Epoch 5/10 | Train Loss: 0.002949 | Grad Norm: 0.0067
+[2026-05-04 01:48:40 root] (block_ap.py 444): INFO [Block 0] Epoch 6/10 | Train Loss: 0.002924 | Grad Norm: 0.0066
+[2026-05-04 01:50:15 root] (block_ap.py 444): INFO [Block 0] Epoch 7/10 | Train Loss: 0.002885 | Grad Norm: 0.0064
+[2026-05-04 01:51:46 root] (block_ap.py 444): INFO [Block 0] Epoch 8/10 | Train Loss: 0.002884 | Grad Norm: 0.0064
+[2026-05-04 01:53:12 root] (block_ap.py 444): INFO [Block 0] Epoch 9/10 | Train Loss: 0.002876 | Grad Norm: 0.0061
+[2026-05-04 01:54:35 root] (block_ap.py 444): INFO [Block 0] Epoch 10/10 | Train Loss: 0.002883 | Grad Norm: 0.0059
+[2026-05-04 01:55:05 root] (block_ap.py 301): INFO === Block 1 ===
+[2026-05-04 01:57:04 root] (block_ap.py 444): INFO [Block 1] Epoch 1/10 | Train Loss: 0.005880 | Grad Norm: 0.0109
+[2026-05-04 01:58:49 root] (block_ap.py 444): INFO [Block 1] Epoch 2/10 | Train Loss: 0.004304 | Grad Norm: 0.0073
+[2026-05-04 02:00:30 root] (block_ap.py 444): INFO [Block 1] Epoch 3/10 | Train Loss: 0.004101 | Grad Norm: 0.0068
+[2026-05-04 02:02:11 root] (block_ap.py 444): INFO [Block 1] Epoch 4/10 | Train Loss: 0.003995 | Grad Norm: 0.0065
+[2026-05-04 02:03:53 root] (block_ap.py 444): INFO [Block 1] Epoch 5/10 | Train Loss: 0.003938 | Grad Norm: 0.0065
+[2026-05-04 02:05:41 root] (block_ap.py 444): INFO [Block 1] Epoch 6/10 | Train Loss: 0.003899 | Grad Norm: 0.0061
+[2026-05-04 02:07:29 root] (block_ap.py 444): INFO [Block 1] Epoch 7/10 | Train Loss: 0.003884 | Grad Norm: 0.0059
+[2026-05-04 02:09:15 root] (block_ap.py 444): INFO [Block 1] Epoch 8/10 | Train Loss: 0.003878 | Grad Norm: 0.0058
+[2026-05-04 02:11:01 root] (block_ap.py 444): INFO [Block 1] Epoch 9/10 | Train Loss: 0.003898 | Grad Norm: 0.0057
+[2026-05-04 02:12:48 root] (block_ap.py 444): INFO [Block 1] Epoch 10/10 | Train Loss: 0.003920 | Grad Norm: 0.0057
+[2026-05-04 02:13:16 root] (block_ap.py 301): INFO === Block 2 ===
+[2026-05-04 02:15:24 root] (block_ap.py 444): INFO [Block 2] Epoch 1/10 | Train Loss: 0.106518 | Grad Norm: 3.4381
+[2026-05-04 02:16:40 root] (block_ap.py 444): INFO [Block 2] Epoch 2/10 | Train Loss: 0.066717 | Grad Norm: 2.5908
+[2026-05-04 02:17:59 root] (block_ap.py 444): INFO [Block 2] Epoch 3/10 | Train Loss: 0.063577 | Grad Norm: 2.4918
+[2026-05-04 02:19:30 root] (block_ap.py 444): INFO [Block 2] Epoch 4/10 | Train Loss: 0.056073 | Grad Norm: 2.3004
+[2026-05-04 02:21:12 root] (block_ap.py 444): INFO [Block 2] Epoch 5/10 | Train Loss: 0.047756 | Grad Norm: 1.9441
+[2026-05-04 02:22:45 root] (block_ap.py 444): INFO [Block 2] Epoch 6/10 | Train Loss: 0.049025 | Grad Norm: 2.0256
+[2026-05-04 02:24:15 root] (block_ap.py 444): INFO [Block 2] Epoch 7/10 | Train Loss: 0.045276 | Grad Norm: 1.9404
+[2026-05-04 02:25:46 root] (block_ap.py 444): INFO [Block 2] Epoch 8/10 | Train Loss: 0.044947 | Grad Norm: 1.9060
+[2026-05-04 02:27:17 root] (block_ap.py 444): INFO [Block 2] Epoch 9/10 | Train Loss: 0.046325 | Grad Norm: 1.9341
+[2026-05-04 02:28:51 root] (block_ap.py 444): INFO [Block 2] Epoch 10/10 | Train Loss: 0.046953 | Grad Norm: 1.9829
+[2026-05-04 02:29:20 root] (block_ap.py 301): INFO === Block 3 ===
+[2026-05-04 02:31:27 root] (block_ap.py 444): INFO [Block 3] Epoch 1/10 | Train Loss: 0.023805 | Grad Norm: 0.0343
+[2026-05-04 02:33:09 root] (block_ap.py 444): INFO [Block 3] Epoch 2/10 | Train Loss: 0.020326 | Grad Norm: 0.0259
+[2026-05-04 02:34:52 root] (block_ap.py 444): INFO [Block 3] Epoch 3/10 | Train Loss: 0.019047 | Grad Norm: 0.0278
+[2026-05-04 02:36:39 root] (block_ap.py 444): INFO [Block 3] Epoch 4/10 | Train Loss: 0.017376 | Grad Norm: 0.0308
+[2026-05-04 02:38:02 root] (block_ap.py 444): INFO [Block 3] Epoch 5/10 | Train Loss: 0.015832 | Grad Norm: 0.0348
+[2026-05-04 02:39:33 root] (block_ap.py 444): INFO [Block 3] Epoch 6/10 | Train Loss: 0.014641 | Grad Norm: 0.0333
+[2026-05-04 02:41:09 root] (block_ap.py 444): INFO [Block 3] Epoch 7/10 | Train Loss: 0.014022 | Grad Norm: 0.0323
+[2026-05-04 02:42:59 root] (block_ap.py 444): INFO [Block 3] Epoch 8/10 | Train Loss: 0.013796 | Grad Norm: 0.0318
+[2026-05-04 02:44:43 root] (block_ap.py 444): INFO [Block 3] Epoch 9/10 | Train Loss: 0.013661 | Grad Norm: 0.0293
+[2026-05-04 02:46:28 root] (block_ap.py 444): INFO [Block 3] Epoch 10/10 | Train Loss: 0.013656 | Grad Norm: 0.0282
+[2026-05-04 02:46:56 root] (block_ap.py 301): INFO === Block 4 ===
+[2026-05-04 02:49:08 root] (block_ap.py 444): INFO [Block 4] Epoch 1/10 | Train Loss: 0.020860 | Grad Norm: 0.0390
+[2026-05-04 02:50:55 root] (block_ap.py 444): INFO [Block 4] Epoch 2/10 | Train Loss: 0.017196 | Grad Norm: 0.0252
+[2026-05-04 02:52:40 root] (block_ap.py 444): INFO [Block 4] Epoch 3/10 | Train Loss: 0.016686 | Grad Norm: 0.0228
+[2026-05-04 02:54:25 root] (block_ap.py 444): INFO [Block 4] Epoch 4/10 | Train Loss: 0.016444 | Grad Norm: 0.0220
+[2026-05-04 02:56:09 root] (block_ap.py 444): INFO [Block 4] Epoch 5/10 | Train Loss: 0.016293 | Grad Norm: 0.0209
+[2026-05-04 02:57:53 root] (block_ap.py 444): INFO [Block 4] Epoch 6/10 | Train Loss: 0.016188 | Grad Norm: 0.0201
+[2026-05-04 02:59:24 root] (block_ap.py 444): INFO [Block 4] Epoch 7/10 | Train Loss: 0.016117 | Grad Norm: 0.0196
+[2026-05-04 03:00:43 root] (block_ap.py 444): INFO [Block 4] Epoch 8/10 | Train Loss: 0.016116 | Grad Norm: 0.0188
+[2026-05-04 03:02:01 root] (block_ap.py 444): INFO [Block 4] Epoch 9/10 | Train Loss: 0.016162 | Grad Norm: 0.0182
+[2026-05-04 03:03:36 root] (block_ap.py 444): INFO [Block 4] Epoch 10/10 | Train Loss: 0.016263 | Grad Norm: 0.0179
+[2026-05-04 03:04:04 root] (block_ap.py 301): INFO === Block 5 ===
+[2026-05-04 03:06:02 root] (block_ap.py 444): INFO [Block 5] Epoch 1/10 | Train Loss: 0.027968 | Grad Norm: 0.0535
+[2026-05-04 03:07:37 root] (block_ap.py 444): INFO [Block 5] Epoch 2/10 | Train Loss: 0.023354 | Grad Norm: 0.0288
+[2026-05-04 03:09:08 root] (block_ap.py 444): INFO [Block 5] Epoch 3/10 | Train Loss: 0.022950 | Grad Norm: 0.0276
+[2026-05-04 03:10:40 root] (block_ap.py 444): INFO [Block 5] Epoch 4/10 | Train Loss: 0.022787 | Grad Norm: 0.0263
+[2026-05-04 03:12:27 root] (block_ap.py 444): INFO [Block 5] Epoch 5/10 | Train Loss: 0.022597 | Grad Norm: 0.0250
+[2026-05-04 03:14:12 root] (block_ap.py 444): INFO [Block 5] Epoch 6/10 | Train Loss: 0.022519 | Grad Norm: 0.0242
+[2026-05-04 03:15:57 root] (block_ap.py 444): INFO [Block 5] Epoch 7/10 | Train Loss: 0.022483 | Grad Norm: 0.0236
+[2026-05-04 03:17:41 root] (block_ap.py 444): INFO [Block 5] Epoch 8/10 | Train Loss: 0.022510 | Grad Norm: 0.0231
+[2026-05-04 03:19:29 root] (block_ap.py 444): INFO [Block 5] Epoch 9/10 | Train Loss: 0.022628 | Grad Norm: 0.0230
+[2026-05-04 03:21:14 root] (block_ap.py 444): INFO [Block 5] Epoch 10/10 | Train Loss: 0.022726 | Grad Norm: 0.0225
+[2026-05-04 03:21:50 root] (block_ap.py 301): INFO === Block 6 ===
+[2026-05-04 03:23:58 root] (block_ap.py 444): INFO [Block 6] Epoch 1/10 | Train Loss: 0.036234 | Grad Norm: 0.0448
+[2026-05-04 03:25:42 root] (block_ap.py 444): INFO [Block 6] Epoch 2/10 | Train Loss: 0.031116 | Grad Norm: 0.0340
+[2026-05-04 03:27:30 root] (block_ap.py 444): INFO [Block 6] Epoch 3/10 | Train Loss: 0.030575 | Grad Norm: 0.0322
+[2026-05-04 03:29:18 root] (block_ap.py 444): INFO [Block 6] Epoch 4/10 | Train Loss: 0.030352 | Grad Norm: 0.0308
+[2026-05-04 03:31:06 root] (block_ap.py 444): INFO [Block 6] Epoch 5/10 | Train Loss: 0.030180 | Grad Norm: 0.0294
+[2026-05-04 03:32:55 root] (block_ap.py 444): INFO [Block 6] Epoch 6/10 | Train Loss: 0.030021 | Grad Norm: 0.0281
+[2026-05-04 03:34:39 root] (block_ap.py 444): INFO [Block 6] Epoch 7/10 | Train Loss: 0.029913 | Grad Norm: 0.0268
+[2026-05-04 03:36:24 root] (block_ap.py 444): INFO [Block 6] Epoch 8/10 | Train Loss: 0.029979 | Grad Norm: 0.0266
+[2026-05-04 03:38:10 root] (block_ap.py 444): INFO [Block 6] Epoch 9/10 | Train Loss: 0.030055 | Grad Norm: 0.0260
+[2026-05-04 03:39:47 root] (block_ap.py 444): INFO [Block 6] Epoch 10/10 | Train Loss: 0.030233 | Grad Norm: 0.0261
+[2026-05-04 03:40:15 root] (block_ap.py 301): INFO === Block 7 ===
+[2026-05-04 03:42:19 root] (block_ap.py 444): INFO [Block 7] Epoch 1/10 | Train Loss: 0.043381 | Grad Norm: 0.0606
+[2026-05-04 03:43:42 root] (block_ap.py 444): INFO [Block 7] Epoch 2/10 | Train Loss: 0.037715 | Grad Norm: 0.0430
+[2026-05-04 03:45:02 root] (block_ap.py 444): INFO [Block 7] Epoch 3/10 | Train Loss: 0.037106 | Grad Norm: 0.0397
+[2026-05-04 03:46:22 root] (block_ap.py 444): INFO [Block 7] Epoch 4/10 | Train Loss: 0.036852 | Grad Norm: 0.0385
+[2026-05-04 03:47:55 root] (block_ap.py 444): INFO [Block 7] Epoch 5/10 | Train Loss: 0.036668 | Grad Norm: 0.0371
+[2026-05-04 03:49:32 root] (block_ap.py 444): INFO [Block 7] Epoch 6/10 | Train Loss: 0.036480 | Grad Norm: 0.0345
+[2026-05-04 03:51:10 root] (block_ap.py 444): INFO [Block 7] Epoch 7/10 | Train Loss: 0.036373 | Grad Norm: 0.0336

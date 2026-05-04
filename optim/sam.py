@@ -17,7 +17,8 @@ def SAM(params, base_optimizer, rho=0.05, **kwargs):
 
             for group in self.param_groups:
                 group_norm = self._group_grad_norm(group)
-                scale = self.rho / (group_norm + 1e-12)
+                scale = self.rho / (group_norm + 1e-6)
+                scale = torch.clamp(scale, max=1000.0)
 
                 for p in group["params"]:
                     if p.grad is None:

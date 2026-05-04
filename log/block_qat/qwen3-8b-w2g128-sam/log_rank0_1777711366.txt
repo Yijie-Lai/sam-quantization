@@ -1,0 +1,81 @@
+[2026-05-02 08:42:46 root] (block_main.py 167): INFO Namespace(model='/share/Qwen3-8B', cache_dir='./cache', output_dir='./log/block_qat/qwen3-8b-w2g128-sam', save_quant_dir='/share/MY-DAPO/block_qat/qwen3-8b-w2g128-sam', real_quant=False, resume_quant=None, calib_dataset='sweep_0.8', train_size=4096, val_size=64, training_seqlen=2048, batch_size=2, epochs=1, ppl_seqlen=2048, seed=2, eval_ppl=False, eval_tasks='', eval_batch_size=16, wbits=2, group_size=128, quant_lr=0.0001, weight_lr=2e-05, min_lr_factor=20, clip_grad=0.1, wd=0, net=None, max_memory='70GiB', early_stop=0, off_load_to_disk=False, use_progressive=False, target_bits=2, r_shape_mode='scalar', rho=0.05, ema_momentum=0.05, use_sam=True, sam_rho=0.05, use_soft_round=False, soft_round_type='tanh', soft_round_t=12)
+[2026-05-02 08:42:46 root] (block_main.py 171): INFO net is None, setting as Qwen3-8B
+[2026-05-02 08:42:49 root] (block_main.py 195): INFO === start quantization ===
+[2026-05-02 08:42:49 root] (block_main.py 203): INFO load trainloader from ./cache/dataloader_Qwen3-8B_sweep_0.8_4096_64_2048_train.cache
+[2026-05-02 08:42:49 root] (block_main.py 205): INFO load valloader from ./cache/dataloader_Qwen3-8B_sweep_0.8_4096_64_2048_val.cache
+[2026-05-02 08:42:49 root] (block_ap.py 160): INFO Starting ...
+[2026-05-02 08:43:51 root] (block_ap.py 295): INFO === Block 0 ===
+[2026-05-02 08:53:59 root] (block_ap.py 438): INFO [Block 0] Epoch 1/1 | Train Loss: 0.001173 | Grad Norm: 0.0080
+[2026-05-02 08:55:37 root] (block_ap.py 295): INFO === Block 1 ===
+[2026-05-02 09:05:48 root] (block_ap.py 438): INFO [Block 1] Epoch 1/1 | Train Loss: 0.001786 | Grad Norm: 0.0108
+[2026-05-02 09:07:22 root] (block_ap.py 295): INFO === Block 2 ===
+[2026-05-02 09:17:38 root] (block_ap.py 438): INFO [Block 2] Epoch 1/1 | Train Loss: 0.003167 | Grad Norm: 0.0170
+[2026-05-02 09:19:17 root] (block_ap.py 295): INFO === Block 3 ===
+[2026-05-02 09:29:35 root] (block_ap.py 438): INFO [Block 3] Epoch 1/1 | Train Loss: 0.004296 | Grad Norm: 0.0121
+[2026-05-02 09:31:10 root] (block_ap.py 295): INFO === Block 4 ===
+[2026-05-02 09:41:28 root] (block_ap.py 438): INFO [Block 4] Epoch 1/1 | Train Loss: 0.007222 | Grad Norm: 0.0110
+[2026-05-02 09:43:07 root] (block_ap.py 295): INFO === Block 5 ===
+[2026-05-02 09:53:18 root] (block_ap.py 438): INFO [Block 5] Epoch 1/1 | Train Loss: 0.011627 | Grad Norm: 0.0071
+[2026-05-02 09:54:55 root] (block_ap.py 295): INFO === Block 6 ===
+[2026-05-02 10:05:10 root] (block_ap.py 438): INFO [Block 6] Epoch 1/1 | Train Loss: 0.069421 | Grad Norm: 3.5359
+[2026-05-02 10:06:51 root] (block_ap.py 295): INFO === Block 7 ===
+[2026-05-02 10:17:12 root] (block_ap.py 438): INFO [Block 7] Epoch 1/1 | Train Loss: 2.695724 | Grad Norm: 0.1719
+[2026-05-02 10:18:51 root] (block_ap.py 295): INFO === Block 8 ===
+[2026-05-02 10:29:21 root] (block_ap.py 438): INFO [Block 8] Epoch 1/1 | Train Loss: 2.677430 | Grad Norm: 0.1641
+[2026-05-02 10:31:00 root] (block_ap.py 295): INFO === Block 9 ===
+[2026-05-02 10:41:11 root] (block_ap.py 438): INFO [Block 9] Epoch 1/1 | Train Loss: 2.668491 | Grad Norm: 0.1693
+[2026-05-02 10:42:50 root] (block_ap.py 295): INFO === Block 10 ===
+[2026-05-02 10:52:59 root] (block_ap.py 438): INFO [Block 10] Epoch 1/1 | Train Loss: 2.644937 | Grad Norm: 0.1663
+[2026-05-02 10:54:40 root] (block_ap.py 295): INFO === Block 11 ===
+[2026-05-02 11:04:42 root] (block_ap.py 438): INFO [Block 11] Epoch 1/1 | Train Loss: 2.641654 | Grad Norm: 0.1538
+[2026-05-02 11:06:17 root] (block_ap.py 295): INFO === Block 12 ===
+[2026-05-02 11:16:41 root] (block_ap.py 438): INFO [Block 12] Epoch 1/1 | Train Loss: 2.636152 | Grad Norm: 0.1508
+[2026-05-02 11:18:20 root] (block_ap.py 295): INFO === Block 13 ===
+[2026-05-02 11:28:36 root] (block_ap.py 438): INFO [Block 13] Epoch 1/1 | Train Loss: 2.632671 | Grad Norm: 0.1504
+[2026-05-02 11:30:15 root] (block_ap.py 295): INFO === Block 14 ===
+[2026-05-02 11:40:30 root] (block_ap.py 438): INFO [Block 14] Epoch 1/1 | Train Loss: 2.612669 | Grad Norm: 0.1661
+[2026-05-02 11:42:06 root] (block_ap.py 295): INFO === Block 15 ===
+[2026-05-02 11:52:17 root] (block_ap.py 438): INFO [Block 15] Epoch 1/1 | Train Loss: 2.603555 | Grad Norm: 0.1892
+[2026-05-02 11:53:55 root] (block_ap.py 295): INFO === Block 16 ===
+[2026-05-02 12:04:05 root] (block_ap.py 438): INFO [Block 16] Epoch 1/1 | Train Loss: 16.217131 | Grad Norm: 20.0953
+[2026-05-02 12:05:46 root] (block_ap.py 295): INFO === Block 17 ===
+[2026-05-02 12:16:06 root] (block_ap.py 438): INFO [Block 17] Epoch 1/1 | Train Loss: 14.974477 | Grad Norm: 0.7009
+[2026-05-02 12:17:48 root] (block_ap.py 295): INFO === Block 18 ===
+[2026-05-02 12:28:07 root] (block_ap.py 438): INFO [Block 18] Epoch 1/1 | Train Loss: 14.946514 | Grad Norm: 0.5217
+[2026-05-02 12:29:46 root] (block_ap.py 295): INFO === Block 19 ===
+[2026-05-02 12:37:49 root] (block_ap.py 438): INFO [Block 19] Epoch 1/1 | Train Loss: 14.973893 | Grad Norm: 0.3628
+[2026-05-02 12:39:05 root] (block_ap.py 295): INFO === Block 20 ===
+[2026-05-02 12:45:04 root] (block_ap.py 438): INFO [Block 20] Epoch 1/1 | Train Loss: 14.987723 | Grad Norm: 0.3161
+[2026-05-02 12:46:26 root] (block_ap.py 295): INFO === Block 21 ===
+[2026-05-02 12:52:35 root] (block_ap.py 438): INFO [Block 21] Epoch 1/1 | Train Loss: 15.041714 | Grad Norm: 0.3724
+[2026-05-02 12:53:55 root] (block_ap.py 295): INFO === Block 22 ===
+[2026-05-02 13:00:01 root] (block_ap.py 438): INFO [Block 22] Epoch 1/1 | Train Loss: 15.121615 | Grad Norm: 0.4933
+[2026-05-02 13:01:21 root] (block_ap.py 295): INFO === Block 23 ===
+[2026-05-02 13:07:29 root] (block_ap.py 438): INFO [Block 23] Epoch 1/1 | Train Loss: 15.356564 | Grad Norm: 0.5206
+[2026-05-02 13:08:48 root] (block_ap.py 295): INFO === Block 24 ===
+[2026-05-02 13:14:50 root] (block_ap.py 438): INFO [Block 24] Epoch 1/1 | Train Loss: 15.744925 | Grad Norm: 0.7256
+[2026-05-02 13:16:11 root] (block_ap.py 295): INFO === Block 25 ===
+[2026-05-02 13:22:20 root] (block_ap.py 438): INFO [Block 25] Epoch 1/1 | Train Loss: 16.102148 | Grad Norm: 0.5286
+[2026-05-02 13:23:43 root] (block_ap.py 295): INFO === Block 26 ===
+[2026-05-02 13:33:23 root] (block_ap.py 438): INFO [Block 26] Epoch 1/1 | Train Loss: 16.658300 | Grad Norm: 0.6841
+[2026-05-02 13:35:01 root] (block_ap.py 295): INFO === Block 27 ===
+[2026-05-02 13:45:00 root] (block_ap.py 438): INFO [Block 27] Epoch 1/1 | Train Loss: 17.469341 | Grad Norm: 0.8260
+[2026-05-02 13:46:35 root] (block_ap.py 295): INFO === Block 28 ===
+[2026-05-02 13:56:33 root] (block_ap.py 438): INFO [Block 28] Epoch 1/1 | Train Loss: 18.685669 | Grad Norm: 1.3029
+[2026-05-02 13:58:14 root] (block_ap.py 295): INFO === Block 29 ===
+[2026-05-02 14:08:37 root] (block_ap.py 438): INFO [Block 29] Epoch 1/1 | Train Loss: 20.046726 | Grad Norm: 1.2948
+[2026-05-02 14:10:11 root] (block_ap.py 295): INFO === Block 30 ===
+[2026-05-02 14:20:34 root] (block_ap.py 438): INFO [Block 30] Epoch 1/1 | Train Loss: 22.178272 | Grad Norm: 2.5069
+[2026-05-02 14:22:16 root] (block_ap.py 295): INFO === Block 31 ===
+[2026-05-02 14:32:41 root] (block_ap.py 438): INFO [Block 31] Epoch 1/1 | Train Loss: 24.547031 | Grad Norm: 2.1688
+[2026-05-02 14:34:14 root] (block_ap.py 295): INFO === Block 32 ===
+[2026-05-02 14:44:42 root] (block_ap.py 438): INFO [Block 32] Epoch 1/1 | Train Loss: 27.598055 | Grad Norm: 3.6888
+[2026-05-02 14:46:19 root] (block_ap.py 295): INFO === Block 33 ===
+[2026-05-02 14:56:40 root] (block_ap.py 438): INFO [Block 33] Epoch 1/1 | Train Loss: 31.468948 | Grad Norm: 4.9448
+[2026-05-02 14:58:15 root] (block_ap.py 295): INFO === Block 34 ===
+[2026-05-02 15:08:32 root] (block_ap.py 438): INFO [Block 34] Epoch 1/1 | Train Loss: 25.514814 | Grad Norm: 18.0335
+[2026-05-02 15:10:11 root] (block_ap.py 295): INFO === Block 35 ===
+[2026-05-02 15:20:29 root] (block_ap.py 438): INFO [Block 35] Epoch 1/1 | Train Loss: 38.185158 | Grad Norm: 101.0575
+[2026-05-02 15:22:18 root] (block_main.py 226): INFO quant time: 23969.35s
+[2026-05-02 15:22:18 root] (block_main.py 231): INFO start saving model
+[2026-05-02 15:22:41 root] (block_main.py 234): INFO save model success

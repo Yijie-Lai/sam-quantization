@@ -36,27 +36,32 @@ def get_hidden_states(output):
         raise TypeError(f"Unsupported output type: {type(output)}")
 
 def update_dataset(layer, dataset, dev, attention_mask, position_ids, position_embeddings):
+    layer = layer.float()
+
     with torch.no_grad():
-        with torch.cuda.amp.autocast():
-            for index, inps in enumerate(dataset):
-                inps = inps.to(dev)
+        for index, inps in enumerate(dataset):
+            inps = inps.to(dev).float()
 
-                if inps.dim() == 2:
-                    inps = inps.unsqueeze(0)
+            if inps.dim() == 2:
+                inps = inps.unsqueeze(0)
 
-                out = layer(
-                    inps,
-                    attention_mask=attention_mask,
-                    position_ids=position_ids,
-                    position_embeddings=position_embeddings
-                )
+            out = layer(
+                inps,
+                attention_mask=attention_mask,
+                position_ids=position_ids,
+                position_embeddings=position_embeddings
+            )
 
-                new_data = get_hidden_states(out)
+            new_data = get_hidden_states(out).float()
 
-                if new_data.dim() == 2:
-                    new_data = new_data.unsqueeze(0)
+            if not torch.isfinite(new_data).all():
+                pdb.set_trace()
 
-                dataset.update_data(index, new_data.cpu())
+
+            if new_data.dim() == 2:
+                new_data = new_data.unsqueeze(0)
+
+            dataset.update_data(index, new_data.cpu())
 
 
 def sam_train_step(
@@ -76,7 +81,14 @@ def sam_train_step(
     with torch.cuda.amp.autocast(dtype=torch.bfloat16):
         out = qlayer(input, **forward_kwargs)
         quant_out = get_hidden_states(out)
+
+    if torch.isnan(quant_out).any() or torch.isinf(quant_out).any():
+        print("NaN/Inf detected in quant_out BEFORE loss")
+        pdb.set_trace()
     loss1 = loss_func(label.float(), quant_out.float())
+    if not torch.isfinite(loss1):
+        optimizer.zero_grad(set_to_none=True)
+        print("SAM Loss_1 is NaN/Inf")
     loss1.backward()
 
     # progressive
@@ -104,9 +116,6 @@ def sam_train_step(
 
     return loss2.detach(), grad_norm.detach()
 
-
-import torch
-import math
 
 def normal_train_step(
     qlayer,
@@ -447,7 +456,7 @@ def block_ap(model, args, trainloader, valloader, logger=None):
                     )
 
         # ===== inplace quant =====
-        qlayer.half()
+        qlayer.float()
         quant_inplace(qlayer)
         set_quant_state(qlayer, False)
 

@@ -1,1 +1,7 @@
 cache/
+__pycache__/
+*.py[cod]
+log/
+outputs/
+data/
+*.orig

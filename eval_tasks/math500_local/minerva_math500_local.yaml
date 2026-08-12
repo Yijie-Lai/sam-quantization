@@ -1,0 +1,9 @@
+include: /root/miniconda3/envs/reasoningqat/lib/python3.11/site-packages/lm_eval/tasks/minerva_math/minerva_math_algebra.yaml
+task: minerva_math500_local
+dataset_path: json
+dataset_name: null
+dataset_kwargs:
+  data_files:
+    test: /root/lai-code/reform_efficient/data/MATH-500/test.jsonl
+training_split: null
+test_split: test

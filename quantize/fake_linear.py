@@ -47,6 +47,7 @@ class QuantLinear(nn.Module):
         self.ema_momentum = None
 
         self.delta_w = None
+        self.progressive_finalized = False
 
     def forward(self, x):
         weight = self.weight
@@ -103,6 +104,7 @@ class QuantLinear(nn.Module):
     ):
         self.use_weight_quant = True
         self.use_progressive = True
+        self.progressive_finalized = False
 
         self.r_shape_mode = r_shape_mode
         self.rho = rho
@@ -144,12 +146,22 @@ class QuantLinear(nn.Module):
             del self._buffers["progressive_ratio"]
 
         self.progressive_ratio = None
+        self.progressive_finalized = False
+
+    @torch.no_grad()
+    def finalize_progressive(self):
+        """Switch the training forward to the deploy-time target quantizer."""
+        if not self.use_progressive or self.progressive_ratio is None:
+            return
+        self.progressive_ratio.fill_(1.0)
+        self.progressive_finalized = True
 
 
     @torch.no_grad()
     def update_progressive_ratio(self):
         if (
             not self.use_progressive
+            or self.progressive_finalized
             or self.delta_w is None
             or self.weight.grad is None
             or self.progressive_ratio is None

@@ -13,7 +13,7 @@ from quantize.block_ap import block_ap
 
 from pathlib import Path
 from transformers import AutoTokenizer, AutoConfig, AutoModelForCausalLM
-from quantize.utils import load_quantized_model
+from quantize.real_linear import load_quantized_model
 
 from accelerate import infer_auto_device_map, dispatch_model
 
@@ -129,6 +129,10 @@ def main():
                         help="Scaling factor for progressive update.")
     parser.add_argument("--ema_momentum", type=float, default=0.05,
                         help="EMA smoothing for progressive ratio.")
+    parser.add_argument(
+        "--progressive_finalize_epochs", type=int, default=1,
+        help="Number of final block epochs trained at the exact target bit-width.",
+    )
     
     # ===== SAM =====
     parser.add_argument("--use_sam", action="store_true",
@@ -136,6 +140,36 @@ def main():
 
     parser.add_argument("--sam_rho", type=float, default=0.05,
                         help="Perturbation radius for SAM (epsilon scale).")
+  
+    # ===== Rho Search =====
+    parser.add_argument(
+        "--rho_search",
+        action="store_true",
+        help="Search the best rho before block-wise training."
+    )
+
+    parser.add_argument(
+        "--rho_grid",
+        type=str,
+        default="0.001,0.002,0.005,0.01,0.02,0.05",
+        help="Comma-separated rho candidates."
+    )
+
+    parser.add_argument(
+        "--rho_search_train_steps",
+        type=int,
+        default=32,
+        help="Number of training batches for each rho candidate."
+    )
+
+    parser.add_argument(
+        "--rho_search_eval_steps",
+        type=int,
+        default=32,
+        help="Number of validation batches for rho evaluation."
+    )
+
+    parser.add_argument("--auto_rho", action="store_true")
     
     # ===== Soft Round =====
     parser.add_argument("--use_soft_round", action="store_true",
@@ -147,11 +181,28 @@ def main():
 
     parser.add_argument("--soft_round_t", type=float, default=12,
                         help="Temperature controlling softness of surrogate gradient.")
+    
+    parser.add_argument(
+        "--loss_type",
+        type=str,
+        default="mse",
+        choices=["mse", "nlc"],
+    )
 
 
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
     args = parser.parse_args()
+
+    if args.use_progressive and args.wbits <= args.target_bits:
+        parser.error(
+            "Progressive quantization requires --wbits greater than --target_bits "
+            "(for example, --wbits 8 --target_bits 2)."
+        )
+    if args.progressive_finalize_epochs < 0:
+        parser.error("--progressive_finalize_epochs must be non-negative")
+    if args.progressive_finalize_epochs > args.epochs:
+        parser.error("--progressive_finalize_epochs cannot exceed --epochs")
 
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -195,8 +246,8 @@ def main():
             logger.info("=== start quantization ===")
             tick = time.time()
 
-            cache_train = f'{args.cache_dir}/dataloader_{args.net}_{args.calib_dataset}_{args.train_size}_{args.val_size}_{args.training_seqlen}_train.cache'
-            cache_val = f'{args.cache_dir}/dataloader_{args.net}_{args.calib_dataset}_{args.train_size}_{args.val_size}_{args.training_seqlen}_val.cache'
+            cache_train = f'{args.cache_dir}/dataloader_random_window_v1_{args.net}_{args.calib_dataset}_{args.train_size}_{args.val_size}_{args.training_seqlen}_train.cache'
+            cache_val = f'{args.cache_dir}/dataloader_random_window_v1_{args.net}_{args.calib_dataset}_{args.train_size}_{args.val_size}_{args.training_seqlen}_val.cache'
 
             if os.path.exists(cache_train) and os.path.exists(cache_val):
                 trainloader = torch.load(cache_train)

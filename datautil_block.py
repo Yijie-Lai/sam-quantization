@@ -65,6 +65,7 @@ def get_openthoughts(tokenizer, train_size, val_size, seed, seqlen):
 
     dataset = load_dataset("open-thoughts/OpenThoughts3-1.2M", split="train")
     dataset = dataset.shuffle(seed=seed)
+    rng = random.Random(seed)
 
     trainloader, valloader = [], []
 
@@ -78,7 +79,11 @@ def get_openthoughts(tokenizer, train_size, val_size, seed, seqlen):
             enc = tokenizer(text, return_tensors='pt')
 
             if enc.input_ids.shape[1] >= seqlen:
-                inp = enc.input_ids[:, :seqlen]
+                # Cover the complete response distribution instead of always
+                # calibrating on the system/user prompt and response prefix.
+                max_start = enc.input_ids.shape[1] - seqlen
+                start = rng.randint(0, max_start)
+                inp = enc.input_ids[:, start:start + seqlen]
                 tar = inp.clone()
 
                 if len(trainloader) < train_size:
@@ -110,6 +115,7 @@ def get_redpajama_concat(tokenizer, train_size, val_size, seed, seqlen):
 
     buffer = ""
     trainloader, valloader = [], []
+    rng = random.Random(seed)
 
     for sample in dataset:
         if len(trainloader) >= train_size and len(valloader) >= val_size:
@@ -119,7 +125,9 @@ def get_redpajama_concat(tokenizer, train_size, val_size, seed, seqlen):
         enc = tokenizer(buffer, return_tensors='pt')
 
         if enc.input_ids.shape[1] >= seqlen:
-            inp = enc.input_ids[:, :seqlen]
+            max_start = enc.input_ids.shape[1] - seqlen
+            start = rng.randint(0, max_start)
+            inp = enc.input_ids[:, start:start + seqlen]
             tar = inp.clone()
 
             if len(trainloader) < train_size:
@@ -153,8 +161,9 @@ def get_sweep_dataset(tokenizer, train_size, val_size, seed, seqlen, reasoning_r
     trainloader = train1 + train2
     valloader = val1 + val2
 
-    random.shuffle(trainloader)
-    random.shuffle(valloader)
+    rng = random.Random(seed)
+    rng.shuffle(trainloader)
+    rng.shuffle(valloader)
 
     return trainloader, valloader
 

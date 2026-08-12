@@ -4,8 +4,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import quantize.fake_linear as int_linear_fake
-from optim.soap import SOAP
-from optim.sam import SAM
+import quantize.real_linear as int_linear_real
+# from optim.asam import ASAM
+from optim.autosam import ASAM
+# from optim.lightsam import LightSAMAdam
 from quantize.quantizer import TanhRound
 from torch.optim.lr_scheduler import CosineAnnealingLR
 import copy
@@ -64,6 +66,161 @@ def update_dataset(layer, dataset, dev, attention_mask, position_ids, position_e
             dataset.update_data(index, new_data.cpu())
 
 
+class MSEPlusNLCLoss(nn.Module):
+    def __init__(self, eps=1e-6):
+        super().__init__()
+        self.mse = nn.MSELoss()
+        self.cos = nn.CosineSimilarity(dim=2)
+        self.eps = eps
+
+    def forward(self, target, pred):
+        target = target.float()
+        pred = pred.float()
+
+        loss1 = self.mse(target, pred)
+        cos = self.cos(pred, target).mean().abs().clamp(min=self.eps)
+        loss2 = -torch.log(cos)
+
+        return loss1 + loss2
+
+def get_rho_candidates(args):
+    # --rho_grid "0.001,0.002,0.005,0.01"
+    rho_grid = getattr(args, "rho_grid", None)
+
+    if rho_grid is None:
+        base = args.sam_rho
+        return [
+            base * 0.25,
+            base * 0.5,
+            base,
+            base * 2.0,
+        ]
+
+    if isinstance(rho_grid, str):
+        return [float(x) for x in rho_grid.split(",") if x.strip()]
+
+    return [float(x) for x in rho_grid]
+
+
+@torch.no_grad()
+def eval_block_loss(
+    qlayer,
+    quant_val_inps,
+    fp_val_inps,
+    loss_func,
+    dev,
+    forward_kwargs,
+    max_batches=5,
+):
+    qlayer.eval()
+    losses = []
+
+    for idx, (quant_inps, fp_inps) in enumerate(zip(quant_val_inps, fp_val_inps)):
+        if idx >= max_batches:
+            break
+
+        input = quant_inps.to(dev)
+        label = fp_inps.to(dev)
+
+        with torch.cuda.amp.autocast(dtype=torch.bfloat16):
+            out = qlayer(input, **forward_kwargs)
+            quant_out = get_hidden_states(out)
+
+        if not torch.isfinite(quant_out).all():
+            continue
+
+        loss = loss_func(label.float(), quant_out.float())
+        if torch.isfinite(loss):
+            losses.append(loss.detach().float().cpu())
+
+    qlayer.train()
+
+    if len(losses) == 0:
+        return float("inf")
+
+    return torch.stack(losses).mean().item()
+
+
+def search_block_rho(
+    qlayer,
+    param,
+    args,
+    loss_func,
+    quant_train_inps,
+    fp_train_inps,
+    quant_val_inps,
+    fp_val_inps,
+    dev,
+    forward_kwargs,
+    trainable_params,
+    logger=None,
+):
+    candidates = get_rho_candidates(args)
+
+    best_rho = args.sam_rho
+    best_loss = float("inf")
+
+    # restore qlayer after every trial
+    base_state = copy.deepcopy(qlayer.state_dict())
+
+    for rho in candidates:
+        qlayer.load_state_dict(base_state, strict=True)
+        qlayer.train()
+
+        optimizer = ASAM(
+            param,
+            torch.optim.AdamW,
+            rho=float(rho),
+            adaptive=True,
+            weight_decay=args.wd,
+        )
+        scaler = torch.cuda.amp.GradScaler()
+
+        for idx, (quant_inps, fp_inps) in enumerate(zip(quant_train_inps, fp_train_inps)):
+            if idx >= args.rho_search_train_steps:
+                break
+
+            input = quant_inps.to(dev)
+            label = fp_inps.to(dev)
+
+            sam_train_step_v3(
+                qlayer,
+                input,
+                label,
+                optimizer,
+                loss_func,
+                args,
+                scaler,
+                forward_kwargs,
+                trainable_params,
+            )
+
+        val_loss = eval_block_loss(
+            qlayer,
+            quant_val_inps,
+            fp_val_inps,
+            loss_func,
+            dev,
+            forward_kwargs,
+            max_batches=args.rho_search_eval_steps,
+        )
+
+        if logger is not None:
+            logger.info(f"[Rho Search] rho={float(rho):.6g} | val loss={val_loss:.6f}")
+
+        if val_loss < best_loss:
+            best_loss = val_loss
+            best_rho = float(rho)
+
+        del optimizer, scaler
+        torch.cuda.empty_cache()
+
+    qlayer.load_state_dict(base_state, strict=True)
+    qlayer.train()
+
+    return best_rho, best_loss
+
+
 def sam_train_step(
     qlayer,
     input,
@@ -113,6 +270,177 @@ def sam_train_step(
     optimizer.second_step(zero_grad=False)
 
     optimizer.step()
+
+    return loss2.detach(), grad_norm.detach()
+
+
+def sam_train_step_v2(
+    qlayer,
+    input,
+    label,
+    optimizer,
+    loss_func,
+    args,
+    scaler,
+    forward_kwargs,
+    trainable_params,
+):
+    optimizer.zero_grad(set_to_none=True)
+
+    # ===================== STEP1 =====================
+    if getattr(args, "auto_rho", False):
+        sdpa_ctx = torch.backends.cuda.sdp_kernel(
+            enable_flash=False,
+            enable_math=True,
+            enable_mem_efficient=False,
+        )
+    else:
+        sdpa_ctx = torch.backends.cuda.sdp_kernel(
+            enable_flash=True,
+            enable_math=True,
+            enable_mem_efficient=True,
+        )
+
+    with sdpa_ctx:
+        with torch.cuda.amp.autocast(dtype=torch.bfloat16):
+            out = qlayer(input, **forward_kwargs)
+            quant_out = get_hidden_states(out)
+
+            if torch.isnan(quant_out).any() or torch.isinf(quant_out).any():
+                raise RuntimeError("NaN/Inf BEFORE loss (STEP1)")
+
+            loss1 = loss_func(label.float(), quant_out.float())
+
+        if not torch.isfinite(loss1):
+            raise RuntimeError("Loss1 NaN/Inf")
+
+        # ================== AUTO RHO ==================
+        if getattr(args, "auto_rho", False):
+            optimizer.zero_grad(set_to_none=True)
+            optimizer.compute_auto_rho(loss1.float(), trainable_params)
+            optimizer.zero_grad(set_to_none=True)
+
+    # backward (scaled)
+    scaler.scale(loss1).backward()
+
+    scaler.unscale_(optimizer)
+
+    if args.use_progressive:
+        for m in qlayer.modules():
+            if isinstance(m, int_linear_fake.QuantLinear):
+                m.update_progressive_ratio()
+
+    # ================== SAM first step ==================
+    optimizer.first_step(zero_grad=True)
+
+    # ===================== STEP2 =====================
+    with torch.cuda.amp.autocast(dtype=torch.bfloat16):
+        out = qlayer(input, **forward_kwargs)
+        quant_out = get_hidden_states(out)
+
+        if torch.isnan(quant_out).any() or torch.isinf(quant_out).any():
+            raise RuntimeError("NaN/Inf BEFORE loss (STEP2)")
+
+        loss2 = loss_func(label.float(), quant_out.float())
+
+    if not torch.isfinite(loss2):
+        raise RuntimeError("Loss2 NaN/Inf")
+
+    # backward (scaled)
+    scaler.scale(loss2).backward()
+
+    scale = scaler.get_scale()
+    inv_scale = 1.0 / scale
+
+    for p in trainable_params:
+        if p.grad is not None:
+            p.grad.data.mul_(inv_scale)
+
+    grad_norm = torch.nn.utils.clip_grad_norm_(
+        trainable_params, args.clip_grad
+    )
+
+    # ================== SAM second step ==================
+    optimizer.second_step(zero_grad=False)
+
+    scaler.step(optimizer)
+    scaler.update()
+
+    return loss2.detach(), grad_norm.detach()
+
+
+def sam_train_step_v3(
+    qlayer,
+    input,
+    label,
+    optimizer,
+    loss_func,
+    args,
+    scaler,
+    forward_kwargs,
+    trainable_params,
+):
+    optimizer.zero_grad(set_to_none=True)
+
+    # ===================== STEP1 =====================
+    with torch.cuda.amp.autocast(dtype=torch.bfloat16):
+        out = qlayer(input, **forward_kwargs)
+        quant_out = get_hidden_states(out)
+
+        if torch.isnan(quant_out).any() or torch.isinf(quant_out).any():
+            raise RuntimeError("NaN/Inf BEFORE loss (STEP1)")
+
+        loss1 = loss_func(label.float(), quant_out.float())
+
+    if not torch.isfinite(loss1):
+        raise RuntimeError("Loss1 NaN/Inf")
+
+    # backward step1
+    scaler.scale(loss1).backward()
+    scaler.unscale_(optimizer)
+
+    if args.use_progressive:
+        for m in qlayer.modules():
+            if isinstance(m, int_linear_fake.QuantLinear):
+                m.update_progressive_ratio()
+
+    # ================== first step ==================
+    optimizer.first_step(zero_grad=True)
+
+    # ===================== STEP2 =====================
+    with torch.cuda.amp.autocast(dtype=torch.bfloat16):
+        out = qlayer(input, **forward_kwargs)
+        quant_out = get_hidden_states(out)
+
+        if torch.isnan(quant_out).any() or torch.isinf(quant_out).any():
+            raise RuntimeError("NaN/Inf BEFORE loss (STEP2)")
+
+        loss2 = loss_func(label.float(), quant_out.float())
+
+    if not torch.isfinite(loss2):
+        raise RuntimeError("Loss2 NaN/Inf")
+
+    # backward step2
+    scaler.scale(loss2).backward()
+
+    scale = scaler.get_scale()
+    inv_scale = 1.0 / scale
+
+    for p in trainable_params:
+        if p.grad is not None:
+            p.grad.data.mul_(inv_scale)
+
+    grad_norm = torch.nn.utils.clip_grad_norm_(
+        trainable_params,
+        args.clip_grad,
+    )
+
+    # ================== restore perturbed params ==================
+    optimizer.second_step(zero_grad=False)
+
+    # ================== AdamW update ==================
+    scaler.step(optimizer)
+    scaler.update()
 
     return loss2.detach(), grad_norm.detach()
 
@@ -264,8 +592,21 @@ def block_ap(model, args, trainloader, valloader, logger=None):
     position_embeddings = layers[0].position_embeddings
     layers[0] = layers[0].module
 
-    attention_mask_batch = attention_mask.repeat(args.batch_size, 1, 1, 1).float() if attention_mask is not None else None
-
+    if attention_mask is None:
+        attention_mask_batch = None
+    elif attention_mask.shape[0] == args.batch_size:
+        attention_mask_batch = attention_mask.float()
+    elif attention_mask.shape[0] == 1:
+        attention_mask_batch = attention_mask.expand(
+            args.batch_size,
+            *attention_mask.shape[1:]
+        ).float()
+    else:
+        raise RuntimeError(
+            f"Unexpected attention mask shape: "
+            f"{tuple(attention_mask.shape)}, "
+            f"expected batch={args.batch_size}"
+        )
     # ===== move back =====
     layers[0] = layers[0].cpu()
     model.model.embed_tokens = model.model.embed_tokens.cpu()
@@ -295,7 +636,10 @@ def block_ap(model, args, trainloader, valloader, logger=None):
             quant_val_inps.update_data(index, data)
 
     # ===== training =====
-    loss_func = torch.nn.MSELoss()
+    if getattr(args, "loss_type", "mse") == "nlc":
+        loss_func = MSEPlusNLCLoss()
+    else:
+        loss_func = torch.nn.MSELoss()
 
     for block_index in range(len(layers)):
         logger.info(f"=== Block {block_index} ===")
@@ -374,7 +718,7 @@ def block_ap(model, args, trainloader, valloader, logger=None):
 
             # ===== optimizer =====
             if args.use_sam:
-                optimizer = SAM(param, torch.optim.AdamW, rho=args.sam_rho, weight_decay=args.wd)
+                optimizer = ASAM(param, torch.optim.AdamW, rho=args.sam_rho, adaptive=True, weight_decay=args.wd)
                 scaler = torch.cuda.amp.GradScaler()
             else:
                 optimizer = torch.optim.AdamW(param, weight_decay=args.wd)
@@ -382,9 +726,62 @@ def block_ap(model, args, trainloader, valloader, logger=None):
 
             trainable_params = list(trainable_parameters(qlayer))
 
+            forward_kwargs = dict(
+                attention_mask=attention_mask_batch,
+                position_ids=position_ids,
+                position_embeddings=position_embeddings,
+            )
+
+            if args.use_sam and getattr(args, "rho_search", False):
+                best_rho, best_rho_loss = search_block_rho(
+                    qlayer,
+                    param,
+                    args,
+                    loss_func,
+                    quant_train_inps,
+                    fp_train_inps,
+                    quant_val_inps,
+                    fp_val_inps,
+                    dev,
+                    forward_kwargs,
+                    trainable_params,
+                    logger=logger,
+                )
+
+                optimizer = ASAM(
+                    param,
+                    torch.optim.AdamW,
+                    rho=best_rho,
+                    adaptive=True,
+                    weight_decay=args.wd,
+                )
+
+                if logger is not None:
+                    logger.info(
+                        f"[Block {block_index}] selected rho={best_rho:.6g} "
+                        f"| search val loss={best_rho_loss:.6f}"
+                    )
+
             for epoch in range(args.epochs):
                 loss_list = []
                 norm_list = []
+
+                finalize_epochs = max(
+                    0, int(getattr(args, "progressive_finalize_epochs", 1))
+                )
+                if (
+                    args.use_progressive
+                    and finalize_epochs > 0
+                    and epoch == max(0, args.epochs - finalize_epochs)
+                ):
+                    for module in qlayer.modules():
+                        if isinstance(module, int_linear_fake.QuantLinear):
+                            module.finalize_progressive()
+                    if logger is not None:
+                        logger.info(
+                            f"[Block {block_index}] progressive ratio finalized "
+                            f"to target W{args.target_bits}"
+                        )
 
                 for index, (quant_inps, fp_inps) in enumerate(zip(quant_train_inps, fp_train_inps)):
 
@@ -398,7 +795,7 @@ def block_ap(model, args, trainloader, valloader, logger=None):
                     )
 
                     if args.use_sam:
-                        loss, norm = sam_train_step(
+                        loss, norm = sam_train_step_v3(
                             qlayer,
                             input,
                             label,
@@ -466,6 +863,46 @@ def block_ap(model, args, trainloader, valloader, logger=None):
             update_dataset(qlayer, quant_val_inps, dev, attention_mask, position_ids, position_embeddings)
 
         layers[block_index] = qlayer.cpu()
+
+        # step 7: pack quantized weights into low-bits format
+        if args.real_quant:
+            named_linears = get_named_linears(qlayer, int_linear_fake.QuantLinear)
+
+            for name, module in named_linears.items():
+                if hasattr(module, "use_progressive") and module.use_progressive:
+                    quantizer = module.secondary_quantizer
+                    bits = args.target_bits
+                else:
+                    quantizer = module.weight_quantizer
+                    bits = args.wbits
+
+                scales = quantizer.scale.clamp(1e-4, 1e4).detach()
+                zeros = quantizer.zero_point.detach().round()
+
+                group_size = quantizer.group_size
+                dim0 = module.weight.shape[0]
+
+                scales = scales.view(dim0, -1).transpose(0, 1).contiguous()
+                zeros = zeros.view(dim0, -1).transpose(0, 1).contiguous()
+
+                q_linear = int_linear_real.QuantLinear(
+                    bits,
+                    group_size,
+                    module.in_features,
+                    module.out_features,
+                    not module.bias is None,
+                )
+
+                q_linear.pack(
+                    module,
+                    scales.float().cpu(),
+                    zeros.float().cpu()
+                )
+
+                set_op_by_name(qlayer, name, q_linear)
+
+                logger.info(f"pack quantized {name} finished")
+                del module
 
         del layer
         torch.cuda.empty_cache()

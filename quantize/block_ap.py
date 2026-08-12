@@ -822,8 +822,11 @@ def block_ap(model, args, trainloader, valloader, logger=None):
                     if loss is None:
                         continue
 
-                    loss_list.append(loss.cpu())
-                    norm_list.append(norm.cpu())
+                    # Keep detached scalars on the GPU throughout the epoch.
+                    # Moving each scalar to the CPU forces the training stream
+                    # to synchronize twice per optimizer step.
+                    loss_list.append(loss)
+                    norm_list.append(norm)
 
                     # ===== LR schedule =====
                     if args.quant_lr > 0:
@@ -834,8 +837,12 @@ def block_ap(model, args, trainloader, valloader, logger=None):
                         weight_scheduler.step()
                         optimizer.param_groups[weight_index]['lr'] = weight_scheduler.get_last_lr()[0]
 
-                avg_loss = torch.stack(loss_list).mean().item()
-                avg_norm = torch.stack(norm_list).mean().item()
+                avg_loss, avg_norm = torch.stack(
+                    (
+                        torch.stack(loss_list).mean(),
+                        torch.stack(norm_list).mean(),
+                    )
+                ).cpu().tolist()
 
                 if logger is not None:
                     logger.info(

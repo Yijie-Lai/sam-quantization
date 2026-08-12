@@ -180,15 +180,13 @@ class QuantLinear(nn.Module):
             out, in_feat = grad.shape
             g = self.group_size
             n_groups = (in_feat + g - 1) // g
-
-            directional_grad = torch.zeros(out, n_groups, device=grad.device)
-
-            for i in range(n_groups):
-                s = i * g
-                e = min((i + 1) * g, in_feat)
-                directional_grad[:, i] = torch.sum(
-                    grad[:, s:e] * self.delta_w[:, s:e], dim=1
-                )
+            directional_values = grad * self.delta_w
+            padding = n_groups * g - in_feat
+            if padding:
+                directional_values = F.pad(directional_values, (0, padding))
+            directional_grad = directional_values.reshape(
+                out, n_groups, g
+            ).sum(dim=2).to(self.progressive_ratio.dtype)
 
         r_target = torch.clamp(
             self.rho / (torch.abs(directional_grad) + 1e-8),
